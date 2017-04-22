@@ -15,14 +15,14 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "proyecto.settings")
 
 application = get_wsgi_application()
 
-import sys
+#import sys
 
-from site import addsitedir
+#from site import addsitedir
 
 #ruta de el virtualenv
 
-addsitedir('/src/www/html/virtual/virtual2/lib/python3.5/site-packages')
+#addsitedir('/src/www/html/virtual/virtual2/lib/python3.5/site-packages')
 
 #ruta de mi aplicacion Django
 
-sys.path = ['/var/www/html/proyecto'] + sys.path
+#sys.path = ['/var/www/html/proyecto'] + sys.path
