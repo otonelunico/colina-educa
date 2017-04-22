@@ -1,1 +1,1 @@
-web: run-program gunicorn colina-educa.wsgi -w 3 --max-requests 250 --preload
+web: gunicorn colina-educa.wsgi -w 3 --max-requests 250 --preload
