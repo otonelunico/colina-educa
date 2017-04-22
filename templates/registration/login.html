@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Iniciar sesion  {% endblock %}
+{% block titulo %} Iniciar sesion {% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block content %}
+
+
+<form method="post"	 >
+	{% csrf_token %}
+	<div class="row">
+		<div class="col-md-6 col-offset-3">
+			<div class="form-group">
+				<label for="username">Nombre de usuario: </label>
+				<input type="text" class="form-control" name="username">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-offset-3">
+			<div class="form-group">
+				<label for="username">Contraseña: </label>
+				<input type="password" class="form-control" name="password">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-offset-3">
+			<div class="form-group" align="center">
+				<a href="{% url 'password_reset' %}">Olvide mi contraseña</a><br>
+				<input type="submit" class="btn btn-primary" value="Ingresar">
+			</div>
+		</div>
+	</div>
+</form>
+
+
+{% if form.errors %}
+	<p class="error">Error, Usuario y/o contraseña invalido.</p>
+{% endif %}
+
+
+{% endblock %}

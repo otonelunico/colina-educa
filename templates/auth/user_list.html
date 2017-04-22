@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% block titulo %} Usuarios registrados{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="panel panel-default">
+	<div class="panel-heading">
+		<h3>
+		Listados de usuarios registrados.
+	</h3>
+	</div>
+	<table class="table table-bordered">
+		<thead>
+			<tr align="center">
+				<td>#</td>
+				<td>Usuario</td>
+				<td>Correo electronico</td>
+				<td>Nombre</td>
+				<td>Apellidos</td>
+				<td >Acciones</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% if object_list %}
+			{% for User in object_list %}
+			<tr>
+				<td align="center">{{ User.id }}</td>
+				<td>{{ User.username }}</td>
+				<td>{{ User.email }}</td>
+				<td>{{ User.first_name }}</td>
+				<td>{{ User.last_name }}</td>
+				<td>
+					<div class="row" align="center">
+						<div class="col-lg-6">
+							<a class="btn btn-primary" href="{% url 'usuario:modif_usuario' User.id %}"> Editar</a>
+						</div>
+						<div class="col-lg-6">
+							<a class="btn btn-danger" href="{% url 'usuario:elim_usuario' User.id %}"> Eliminar</a>
+						</div>
+					</div>
+				</td>
+			</tr>
+			{% endfor %}
+			{% else %}
+			<h1>No hay registro</h1>
+			{% endif %}
+		</tbody>
+		
+
+	</table>
+</div>
+</div>
+
+{% endblock %}

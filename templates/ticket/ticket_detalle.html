@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+{% block title %} Crear Ticket {% endblock %}
+{% block titulo %} Detalle ticket N°{{ detalle.id }} {% endblock %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>Detalle del ticket N° {{ detalle.id }}, su estado es {{ detalle.estado }} 
+                        
+                    </h3>
+                </div>
+                <div class="col-lg-4" align="right">
+                    <div class="btn-group" >
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Cambiar <span class="caret"></span></button> 
+                        <ul class="dropdown-menu pull-right" role="menu" >
+                            <li><a class="btn" style="font-size: 12px" style="font-size: 12px"  href="">Abierto</a> </li>
+                            <li class="divider"></li>
+                            <li><a class="btn" style="font-size: 12px" href="">Pendiente</a></li>
+                            <li class="divider"></li>
+                            <li><a class="btn" style="font-size: 12px" href="">Cerrado</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row ">
+                <div class="col-lg-6">
+                    <h4>Tema: {{ detalle.tema }} </h4>
+                </div>
+                <div class="col-md-6 ">
+                <h4>Establecimiento de solicitud: {{ detalle.establecimiento }}
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4>Nombre del contacto: {{ detalle.nom_contacto }} {{ detalle.ape_contacto }} </h4>
+                    <h4> Correo electronico: <a href="mailto:{{ detalle.correo_contacto }}"> {{ detalle.correo_contacto }} </a> </h4> 
+				</div>
+                <div class="col-lg-6">
+                    <h4> Telefono fijo: {{ detalle.fijo_contacto }} Telefono movil: {{detalle.celu_contacto }} </h4>
+                </div>
+            </div>
+            <div class="row ">
+	            <div class="col-lg-12">
+	            	<div class="row">
+	                    <div class="col-lg-6">
+                        <h4>Datos del problema: {{detalle.resum_problema }}</h4><br>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4>Tecnico asignado: {{ detalle.asignado }} </h4>
+                        </div>
+                    </div>
+                        <h4>Detalle del problema :<br>
+                     		{{ detalle.detall_problema }} 
+                     	</h4>
+						<br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    
+	            </div>
+              	<div class="col-lg-6">
+                    <div align="right">
+                    <br><br>
+                        <a class="btn btn-primary" href="{% url 'ticket:ticket_edit' detalle.id %}">Editar</a>
+                        <a class="btn btn-danger" href="{% url 'ticket:ticket_delete' detalle.id %}"> Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

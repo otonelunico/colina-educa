@@ -1,0 +1,84 @@
+from django import forms
+
+from apps.ticket.models import Ticket, Establecimiento, Tema
+
+class TicketForm(forms.ModelForm):
+
+	class Meta:
+		model=Ticket
+		exclude = ['usuario']
+		fields=[
+			'usuario',
+			'tema',
+			'establecimiento',
+			'nom_contacto',
+			'ape_contacto',
+			'correo_contacto',
+			'fijo_contacto',
+			'celu_contacto',
+			'resum_problema',
+			'asignado',
+			'detall_problema',
+			'estado',
+		]
+		labels={
+			'usuario':'Usuario',
+			'tema':'Tema',
+			'establecimiento':'Establecimiento',
+			'nom_contacto':'Nom_contacto',
+			'ape_contacto':'Ape_contacto',
+			'correo_contacto':'Correo_contacto',
+			'fijo_contacto':'Fijo_contacto',
+			'celu_contacto':'Celu_contacto',
+			'resum_problema':'Resum_problema',
+			'asignado':'Asignado',
+			'detall_problema':'Detall_problema',
+			'estado':'Estado',
+		}
+		widgets={
+			'usuario':forms.Select(attrs={'class':'form-control'}),
+			'tema': forms.Select(attrs={'class':'form-control'}),
+			'establecimiento': forms.Select(attrs={'class':'form-control' }),
+			'nom_contacto': forms.TextInput(attrs={'class':'form-control'}),
+			'ape_contacto': forms.TextInput(attrs={'class':'form-control'}),
+			'correo_contacto': forms.TextInput(attrs={'class':'form-control'}),
+			'fijo_contacto': forms.TextInput(attrs={'class':'form-control'}),
+			'celu_contacto': forms.TextInput(attrs={'class':'form-control'}),
+			'resum_problema': forms.TextInput(attrs={'class':'form-control'}),
+			'asignado': forms.Select(attrs={'class':'form-control'}),
+			'detall_problema': forms.Textarea(attrs={'class':'form-control'}),
+			'estado': forms.Select(attrs={'class':'form-control'}),
+		}
+
+class EstablecimientoForm(forms.ModelForm):
+
+	class Meta:
+		model = Establecimiento
+		fields = [
+			'titulo',
+		]
+		labels = {
+			'titulo':'Titulo',
+
+		}
+		widgets = {
+			'titulo': forms.TextInput(attrs={'class':'form-control'}),
+
+		}
+
+class TemaForm(forms.ModelForm):
+
+	class Meta:
+		model = Tema
+		fields = [
+			'titulo',
+		]
+		labels = {
+			'titulo':'Titulo',
+
+		}
+		widgets = {
+			'titulo': forms.TextInput(attrs={'class':'form-control'}),
+
+		}
+

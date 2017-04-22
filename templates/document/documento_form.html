@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+{% block title %} Crear Documento {% endblock %}
+{% block titulo %} Crear Documento {% endblock %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>
+            Por favor, complete el siguiente formulario para crear un nuevo Documento.
+        </h3>
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                {% csrf_token %}
+                 <div class="row">
+                    <div class="col-lg-12">
+                         <h4>Fecha: 12 julio 2017</h4>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Materia:</h4>
+                    {% render_field form.mat %}  
+                    <h4>Remitente</h4>
+                    {% render_field form.desde %}
+                    <p align="right"><a href="{% url 'document:desde_form' %}">Nuevo</a></p>                   
+                    </div>
+                    <div class="col-md-6 ">
+                    <h4>Tipo de documento</h4>
+                    {% render_field form.tipo %}
+                    <h4>Destinatario</h4>
+                    {% render_field form.para %}
+                    <p align="right"><a href="{% url 'document:para_form' %}">Nuevo</a></p>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                         <h4>Contenido.</h4>
+                       
+                        {% render_field form.cuerpo rows="3" id="imput2" style="margin: 0px -1px 0px 0px; height: 170px; width:max;" autocomplete="off" %}
+                    <br>
+                    </div>
+
+                    <div class="col-lg-12">
+                         <h4>Pie de pagina.</h4>
+                         <div class="form-group">
+                            
+                            <label class="checkbox-inline">
+                                <input type="checkbox"> - MCV/mcv
+                            </label><br>
+                            <h5> DISTRIBUCION </h5>
+                            <label class="checkbox-inline">
+                                <input type="checkbox"> - Archivo Interno
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox"> - OTRO
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                    </div>
+                    <div class="col-lg-6">
+                        <div align="right">
+                        <br><br>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="reset" class="btn btn-default">Borrar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

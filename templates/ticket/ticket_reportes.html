@@ -1,0 +1,109 @@
+{% extends 'base/base.html' %}
+{% block title %} Crear Ticket {% endblock %}
+{% block titulo %} Crear ticket {% endblock %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>
+            Por favor, complete el siguiente formulario para crear un nuevo Documento.
+        </h3>
+        </div>
+        <div class="row panel-body">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-file-text-o fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{ total }}</div>
+                                <div>Todos los ticket</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'ticket:ticket_list' %}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Ver detalles</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa  fa-clock-o fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{ pendiente }}</div>
+                                <div>Total ticket pendientes</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'ticket:ticket_list_pendiente' %}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Ver detalles</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-check fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{ cerrado }}</div>
+                                <div>Total ticket resueltos</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'ticket:ticket_list_cerrado' %}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Ver detalles</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-exclamation fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">{{ abierto }}</div>
+                                <div>Total ticket pendientes!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'ticket:ticket_list_abierto' %}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Ver detalles</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

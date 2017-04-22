@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+{% block titulo %} Listado{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="panel panel-default">
+	<div class="panel-heading">
+		<h3>
+		Listados de usuarios registrados.
+	</h3>
+	</div>
+    <div class="panel-body">
+    	<div class="dataTable_wrapper">
+            <table class="table table-striped table-bordered table-hover dataTable" id="dataTables-example">
+	            <thead>
+	                <tr>
+						<th>#</th>
+						<th>Resumen</th>
+						<th>Tema</th>
+						<th>Establecimiento</th>
+						<th>Solicitado</th>
+						<th>asignado</th>
+						<th>Creacion</th>
+						<th>Estado</th>
+						<th style="width: 120px;">Acciones</th>
+					</tr>
+	            </thead>
+	            <tbody>
+
+				{% if object_list %}
+				{% for ticket in object_list %}
+
+					<tr class="odd gradeX">
+
+						<td> <a href="{% url 'ticket:ticket_detalle' ticket.id %}">{{ ticket.id }} </a></td>
+						<td>{{ ticket.resum_problema }}</td>
+						<td>{{ ticket.tema.titulo }}</td>
+						<td>{{ ticket.establecimiento.titulo }}</td>
+						<td>{{ ticket.nom_contacto }} {{ ticket.ape_contacto }}</td>
+						<td>{{ ticket.asignado }}</td>
+						<td>{{ ticket.fecha_creacion }}</td>
+						<td>{{ ticket.estado }}</td>
+						<td>
+							<div class="row" align="center">
+							<div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            Acciones
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                        <!--    <li><a class="btn " href="#">Cambiar estado</a> -->
+                                            </li>
+                                            <li><a class="btn" href="{% url 'ticket:ticket_edit' ticket.id %}">Editar</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li><a class="btn btn-danger" href="{% url 'ticket:ticket_delete' ticket.id %}"> Eliminar</a>
+                                            </li>
+                                            
+                                            
+                                        </ul>
+                                    </div>
+							<!--	<div class="col-lg-6">
+									<a class="btn btn-primary" href="{% url 'ticket:ticket_edit' ticket.id %}"> Editar</a>
+								</div>
+								<div class="col-lg-6">
+									<a class="btn btn-danger" href="{% url 'ticket:ticket_delete' ticket.id %}"> Eliminar</a>
+								</div> -->
+							</div>
+						</td>
+					</tr>
+					{% endfor %}
+					{% else %}
+					<h1>No hay registro</h1>
+					{% endif %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</div>
+
+{% endblock %}
