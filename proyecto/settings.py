@@ -26,7 +26,7 @@ SECRET_KEY = '2(pmh54pk!c%x70c%chq&ecietd2(x%=+j1ta$tygtg6n-1$!8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*','colinaeduca.herokuapp.com']
 
 
 # Application definition
