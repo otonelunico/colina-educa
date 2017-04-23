@@ -32,7 +32,7 @@ urlpatterns += [
 
 
 #TODO: mejorar orden en urls
-urlpatterns = [
+urlpatterns += [
     url(r'^', include('apps.home.urls', namespace='home')),
     url(r'^archivos/', include('apps.archivos.urls', namespace='archivos')),
     url(r'^accounts/login/', login, {'template_name':'registration/login.html'}, name='login'),
