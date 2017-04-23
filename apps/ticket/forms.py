@@ -6,7 +6,6 @@ class TicketForm(forms.ModelForm):
 
 	class Meta:
 		model=Ticket
-		exclude = ['usuario']
 		fields=[
 			'usuario',
 			'tema',
@@ -22,7 +21,6 @@ class TicketForm(forms.ModelForm):
 			'estado',
 		]
 		labels={
-			'usuario':'Usuario',
 			'tema':'Tema',
 			'establecimiento':'Establecimiento',
 			'nom_contacto':'Nom_contacto',
@@ -36,7 +34,6 @@ class TicketForm(forms.ModelForm):
 			'estado':'Estado',
 		}
 		widgets={
-			'usuario':forms.Select(attrs={'class':'form-control'}),
 			'tema': forms.Select(attrs={'class':'form-control'}),
 			'establecimiento': forms.Select(attrs={'class':'form-control' }),
 			'nom_contacto': forms.TextInput(attrs={'class':'form-control'}),

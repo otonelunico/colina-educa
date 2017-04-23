@@ -6,7 +6,7 @@ from apps.ticket.models import Ticket
 
 urlpatterns = [
    # url(r'^$', login_required(TicketCreate.as_view()), name='ticket_form'),
-    url(r'^nuevo$', login_required(TicketCreate.as_view()), name='ticket_form'),
+    url(r'^nuevo$', login_required(ticket_view), name='ticket_form'),
     url(r'^listar/$', login_required(TicketList.as_view()), name='ticket_list'),
     url(r'^listar/abiertos$', login_required(TicketList.as_view(queryset=Ticket.objects.filter(estado_id =0))), name='ticket_list_abierto'),
     url(r'^listar/cerrados$', login_required(TicketList.as_view(queryset=Ticket.objects.filter(estado_id =1))), name='ticket_list_cerrado'),

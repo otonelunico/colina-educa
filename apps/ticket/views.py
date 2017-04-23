@@ -17,6 +17,9 @@ def ticket_view(request):
     if request.method == 'POST':
         form = TicketForm(request.POST)
         if form.is_valid():
+            obj = form.save(commit=False)
+            obj.usuario = request.user
+            print(obj.usuario)
             form.save()
         return redirect('ticket:ticket_list')
     else:

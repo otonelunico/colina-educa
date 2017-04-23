@@ -86,22 +86,22 @@ WSGI_APPLICATION = 'proyecto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'db4jh8aaamtqm3',
-#         'USER': 'sbpqlpppzyvzdc',
-#         'PASSWORD': 'cd398dc252e09cea5614a99a6c725b8c5cea7531fffb942fd716084931b4582d',
-#         'HOST': 'db4jh8aaamtqm3',
-#         'PORT': 5432,
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'proyecto',
+        'USER': 'postgres',
+        'PASSWORD': 'elunico1',
+        'HOST': 'localhost',
+        'PORT': 5432,
     }
 }
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
 
 if os.getenv('SETTINGS_MODE') in ['PROD']:
     # Parse database configuration from $DATABASE_URL
@@ -150,7 +150,6 @@ if os.getenv('SETTINGS_MODE') in ['PROD']:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATIC_URL = '/static/'
     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
