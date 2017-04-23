@@ -16,10 +16,23 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.views import login, logout_then_login, password_reset, password_reset_done, password_reset_confirm, password_reset_complete
+from django.conf import settings
+from django.conf.urls.static import static
 #from apps.home.views import home
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+]
+
+urlpatterns += [
+    # ... the rest of your URLconf goes here ...
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += [
+    # ... the rest of your URLconf goes here ...
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+#TODO: mejorar orden en urls
+urlpatterns = [
     url(r'^', include('apps.home.urls', namespace='home')),
     url(r'^archivos/', include('apps.archivos.urls', namespace='archivos')),
     url(r'^accounts/login/', login, {'template_name':'registration/login.html'}, name='login'),

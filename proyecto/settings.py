@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 from django.core.urlresolvers import reverse_lazy
+import dj_database_url
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +26,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2(pmh54pk!c%x70c%chq&ecietd2(x%=+j1ta$tygtg6n-1$!8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# cambiar variable ne heroku para debuguear en produccion.
+if os.getenv('DEBUG') == "True":
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ['*','colinaeduca.herokuapp.com']
 
@@ -79,17 +85,26 @@ WSGI_APPLICATION = 'proyecto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'db4jh8aaamtqm3',
+#         'USER': 'sbpqlpppzyvzdc',
+#         'PASSWORD': 'cd398dc252e09cea5614a99a6c725b8c5cea7531fffb942fd716084931b4582d',
+#         'HOST': 'db4jh8aaamtqm3',
+#         'PORT': 5432,
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db4jh8aaamtqm3',
-        'USER': 'sbpqlpppzyvzdc',
-        'PASSWORD': 'cd398dc252e09cea5614a99a6c725b8c5cea7531fffb942fd716084931b4582d',
-        'HOST': 'db4jh8aaamtqm3',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
+if os.getenv('SETTINGS_MODE') in ['PROD']:
+    # Parse database configuration from $DATABASE_URL
+    DATABASES['default'] =  dj_database_url.config()
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -127,10 +142,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
+# TODO: pasar a variables de ambiente
 LOGIN_REDIRECT_URL = reverse_lazy('ticket:ticket_form')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
@@ -142,4 +160,3 @@ EMAIL_HOST_USER = 'ocubillosj@gmail.com'
 EMAIL_HOST_PASSWORD = 'elunico1'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
