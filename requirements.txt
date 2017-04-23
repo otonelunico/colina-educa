@@ -11,3 +11,4 @@ pyparsing==2.2.0
 reportlab==3.4.0
 six==1.10.0
 uWSGI==2.0.15
+whitenoise==3.3.0
