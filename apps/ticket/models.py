@@ -28,7 +28,7 @@ class Tema(models.Model):
 
 class Ticket(models.Model):
 	usuario = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
-	tema = models.ForeignKey(Tema, null=True, blank=True, on_delete=models.CASCADE)
+	tema = models.ForeignKey(Tema, null=False, blank=True, on_delete=models.CASCADE)
 	establecimiento = models.ForeignKey(Establecimiento, null=True, blank=True, on_delete=models.CASCADE)
 	nom_contacto = models.CharField(max_length=50)
 	ape_contacto = models.CharField(max_length=50)
