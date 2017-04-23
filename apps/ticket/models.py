@@ -10,18 +10,18 @@ python3 manage.py migrate
 
 """
 
-class Estado(models.Model):
+class Etatus(models.Model):
 	titulo = models.CharField(max_length=50)
 	def __str__(self):
 		return '{}'.format(self.titulo)
 
 
-class Establecimiento(models.Model):
+class Establishment(models.Model):
 	titulo = models.CharField(max_length=50)
 	def __str__(self):
 		return '{}'.format(self.titulo)
 
-class Tema(models.Model):
+class Theme(models.Model):
 	titulo = models.CharField(max_length=60)
 	def __str__(self):
 		return '{}'.format(self.titulo)
