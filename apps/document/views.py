@@ -95,17 +95,17 @@ def Document_create(request):
         return redirect('document:documento_list')
     else:
         form = DocumentoForm()
-    print (doc_ant)
-    if val:
-        data={
-            'pie_anterior': doc_ant.piepag,
-            'num': doc_ant.num #cambiar por el siguiente numeromde la base de datos
-            }
-    else:
-        data = {
-            'pie_anterior': 'Texto',
-            'num': doc_ant['num']  # cambiar por el siguiente numeromde la base de datos
-        }
+    #print (doc_ant)
+    #if val:
+    #    data={
+    #        'pie_anterior': doc_ant.piepag,
+    #        'num': doc_ant.num #cambiar por el siguiente numeromde la base de datos
+    #        }
+    #else:
+    #    data = {
+    #        'pie_anterior': 'Texto',
+    #        'num': doc_ant['num']  # cambiar por el siguiente numeromde la base de datos
+    #    }
     return render(request, 'document/documento_form.html', dict(form=form, fecha=fecha, data=data))
 
 
