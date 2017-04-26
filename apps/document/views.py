@@ -1,7 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-
 from apps.document.models import Documento, Para, Desde
 from apps.document.forms import DocumentoForm, DesdeForm, ParaForm
 import datetime, time
