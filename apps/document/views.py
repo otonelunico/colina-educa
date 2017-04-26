@@ -63,7 +63,7 @@ def Fecha_actual():
 
 def Document_create(request):
     try:
-        doc_ant = Documento.objects.latest('id')
+     #   doc_ant = Documento.objects.latest('id')
         val=True
     except Documento.DoesNotExist:
         doc_ant = {
