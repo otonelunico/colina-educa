@@ -118,7 +118,7 @@ class ParaCreate(CreateView):
 class DesdeCreate(CreateView):
     model = Desde
     form_class = DesdeForm
-    template_name ="document/nuevo_desdepara.html"pip
+    template_name ="document/nuevo_desdepara.html"
     success_url = reverse_lazy('document:document_form')
 
 class Document_list(ListView):
