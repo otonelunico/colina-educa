@@ -84,7 +84,7 @@ def Document_create(request):
 
 
     data = {
-        'pie_anterior': 'Texto',
+        'pie_anterior': '',
         'num': doc_ant['num']  # cambiar por el siguiente numeromde la base de datos
     }
     return render(request, 'document/documento_form.html', dict(form=form, fecha=fecha, data=data))
