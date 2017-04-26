@@ -80,10 +80,11 @@ def Document_create(request):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.usuario = request.user
-            if val and doc_ant.año==str(fecha['año']):
-                obj.num = doc_ant.num+1
-            else:
-                obj.num = 1
+#            if val and doc_ant.año==str(fecha['año']):
+#                obj.num = doc_ant.num+1
+#            else:
+#                obj.num = 1
+            obj.num = 1
             obj.creacion = fecha_str
             obj.año = fecha['año']
 
@@ -106,7 +107,11 @@ def Document_create(request):
     #        'pie_anterior': 'Texto',
     #        'num': doc_ant['num']  # cambiar por el siguiente numeromde la base de datos
     #    }
-    return render(request, 'document/documento_form.html', dict(form=form, fecha=fecha))
+    data={
+        'pie':'qwe',
+        'num':'123'
+    }
+    return render(request, 'document/documento_form.html', dict(form=form, fecha=fecha, data=data))
 
 
 class ParaCreate(CreateView):
