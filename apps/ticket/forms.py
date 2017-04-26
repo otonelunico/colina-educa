@@ -7,7 +7,6 @@ class TicketForm(forms.ModelForm):
 	class Meta:
 		model=Ticket
 		fields=[
-			'usuario',
 			'tema',
 			'establecimiento',
 			'nom_contacto',

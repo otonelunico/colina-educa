@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
@@ -32,3 +32,17 @@ class TecnicoCreate(CreateView):
     form_class = TecnicoForm
     template_name ="auth/tecnico_form.html"
     success_url = reverse_lazy('ticket:ticket_form')
+
+def Cuenta_edit(request):
+    userid = request.user.id
+    obj = User.objects.get(id=userid)
+    print(obj)
+    if request.method == "GET":
+        form = RegistroForm(instance=obj)
+    else:
+        form = RegistroForm(request.POST, instance=obj)
+        if form.is_valid():
+            form.save()
+        return redirect('usuario:modif_usuario')
+    return render(request, 'auth/user_form.html', {'form': form})
+

@@ -15,9 +15,9 @@
                 {% csrf_token %}
                  <div class="row">
                     <div class="col-lg-12">
-                         <h4>Fecha: 12 julio 2017</h4>
+                         <h4>Fecha: {{ fecha.ndia }}, {{ fecha.dia }} de {{ fecha.mes }} del {{ fecha.año }}</h4>
                     </div>
-                    
+
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -40,25 +40,13 @@
                     <div class="col-lg-12">
                          <h4>Contenido.</h4>
                        
-                        {% render_field form.cuerpo rows="3" id="imput2" style="margin: 0px -1px 0px 0px; height: 170px; width:max;" autocomplete="off" %}
-                    <br>
+                         <textarea class="form-control" name="cuerpo" cols="33" rows="10"></textarea>
+                        <br>
                     </div>
 
                     <div class="col-lg-12">
                          <h4>Pie de pagina.</h4>
-                         <div class="form-group">
-                            
-                            <label class="checkbox-inline">
-                                <input type="checkbox"> - MCV/mcv
-                            </label><br>
-                            <h5> DISTRIBUCION </h5>
-                            <label class="checkbox-inline">
-                                <input type="checkbox"> - Archivo Interno
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox"> - OTRO
-                            </label>
-                        </div>
+                        <textarea class="form-control" name="piepag" cols="33" rows="5">{{ data.pie_anterior|safe }}</textarea>
                     </div>
                 </div>
                 <div class="row">

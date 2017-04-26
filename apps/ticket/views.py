@@ -79,7 +79,7 @@ class TemaCreate(CreateView):
     form_class = TemaForm
     success_url = reverse_lazy('ticket:ticket_form')
 
-def ReporteView(request):
+def EstadosView(request):
     total = Ticket.objects.filter().count()
     abierto = Ticket.objects.filter(estado_id=0).count()
     cerrado = Ticket.objects.filter(estado_id=1).count()

@@ -1,44 +1,37 @@
 {% extends 'base/base.html' %}
 
 {% block title %} Iniciar sesion  {% endblock %}
-{% block titulo %} Iniciar sesion {% endblock %}
-{% block navbar %}
-{% endblock %}
-{% block content %}
+{% block body %}
+
+  <body_login>
+      <form method="post"	 >
+            {% csrf_token %}
+        <div class="login">
+            <div class="login-screen">
+                <div class="app-title">
+                    <h1>Bienvenido a Colina Educa, favor iniciar sesion.</h1>
+                </div>
+                <br>
+                <div class="login-form">
+                    <div class="control-group">
+                    <input type="text" class="login-field" value="" name="username" placeholder="Nombre de usuario" id="login-name">
+                    <label class="login-field-icon fui-user" for="login-name"></label>
+                    </div>
+
+                    <div class="control-group">
+                    <input type="password" class="login-field" value="" name="password" placeholder="Contraseña" id="login-pass">
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    </div>
 
 
-<form method="post"	 >
-	{% csrf_token %}
-	<div class="row">
-		<div class="col-md-6 col-offset-3">
-			<div class="form-group">
-				<label for="username">Nombre de usuario: </label>
-				<input type="text" class="form-control" name="username">
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 col-offset-3">
-			<div class="form-group">
-				<label for="username">Contraseña: </label>
-				<input type="password" class="form-control" name="password">
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 col-offset-3">
-			<div class="form-group" align="center">
-				<a href="{% url 'password_reset' %}">Olvide mi contraseña</a><br>
-				<input type="submit" class="btn btn-primary" value="Ingresar">
-			</div>
-		</div>
-	</div>
-</form>
-
-
-{% if form.errors %}
-	<p class="error">Error, Usuario y/o contraseña invalido.</p>
-{% endif %}
-
-
+                    <input type="submit" class="btn btn-primary" value="Ingresar">
+                    <a href="{% url 'password_reset' %}" class="login-link" >Olvide mi contraseña</a><br>
+                            {% if form.errors %}
+                    <p class="error">Error, Usuario y/o contraseña invalido.</p>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+      </form>
+</body_login>
 {% endblock %}

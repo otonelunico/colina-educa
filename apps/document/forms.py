@@ -7,27 +7,27 @@ class DocumentoForm(forms.ModelForm):
 		model=Documento
 		fields=[
 			'tipo',
-			'num',
 			'mat',
 			'desde',
 			'para',
 			'cuerpo',
+			'piepag',
 		]
 		labels={
 			'tipo':'Tipo',
-			'num':'Num',
 			'mat':'Mat',
 			'desde':'Desde',
 			'para':'Para',
 			'cuerpo':'Cuerpo',
+			'piepag':'Piepag',
 		}
 		widgets={
 			'tipo':forms.Select(attrs={'class':'form-control'}),
-			'num': forms.TextInput(attrs={'class':'form-control'}),
 			'mat': forms.TextInput(attrs={'class':'form-control'}),
 			'desde': forms.Select(attrs={'class':'form-control'}),
 			'para': forms.Select(attrs={'class':'form-control'}),
 			'cuerpo': forms.Textarea(attrs={'class':'form-control'}),
+			'piepag': forms.Textarea(attrs={'class':'form-control'}),
 			}
 			
 class DesdeForm(forms.ModelForm):

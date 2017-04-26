@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 #python3 manage.py makemigrations
@@ -30,8 +31,9 @@ class Documento(models.Model):
 	desde = models.ForeignKey(Desde, null=False, blank=True, on_delete=models.CASCADE)
 	para = models.ForeignKey(Para, null=False, blank=True, on_delete=models.CASCADE)
 	cuerpo = models.TextField()
-	creacion = models.DateTimeField(auto_now_add=True)
-	modificacion = models.DateTimeField(auto_now=True)
-	def __str__(self):
-		return '{}'.format(self.num)
+	piepag = models.TextField()
+	creacion = models.TextField()
+	año =  models.TextField()
+	usuario = models.ForeignKey(User, null=False, blank=True, on_delete=models.CASCADE)
+
 

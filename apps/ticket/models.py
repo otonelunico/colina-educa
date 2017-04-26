@@ -5,7 +5,7 @@ from apps.usuarios.models import Tecnico
 # Create your models here.
 
 """
-python3 manage.py makemigrationsheroku
+python3 manage.py makemigrations
 python3 manage.py migrate
 
 """
