@@ -106,7 +106,7 @@ def Document_create(request):
     #        'pie_anterior': 'Texto',
     #        'num': doc_ant['num']  # cambiar por el siguiente numeromde la base de datos
     #    }
-    return render(request, 'document/documento_form.html', dict(form=form, fecha=fecha, data=data))
+    return render(request, 'document/documento_form.html', dict(form=form, fecha=fecha))
 
 
 class ParaCreate(CreateView):
