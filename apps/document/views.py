@@ -74,7 +74,7 @@ def Document_create(request):
 
     fecha = Fecha_actual()
     fecha_str = str(fecha['dia'])+" "+fecha['mes']+" "+str(fecha['año'])
-    print (doc_ant.año+' '+str(fecha['año']))
+#    print (doc_ant.año+' '+str(fecha['año']))
     if request.method == 'POST':
         form = DocumentoForm(request.POST)
         if form.is_valid():
