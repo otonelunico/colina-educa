@@ -52,23 +52,30 @@ def Fecha_actual():
     }
     return fecha
 
+
 def Document_create(request):
-    doc_ant = {
-        'num':0,
-        'piepag':'',
-    }
-    val=False
+    try:
+        doc_ant = Documento.objects.latest('id')
+        val = True
+    except Documento.DoesNotExist:
+        doc_ant = {
+            'num': 0,
+            'piepag': '',
+        }
+        val = False
 
     fecha = Fecha_actual()
-    fecha_str = str(fecha['dia'])+" "+fecha['mes']+" "+str(fecha['año'])
-
+    fecha_str = str(fecha['dia']) + " " + fecha['mes'] + " " + str(fecha['año'])
+    print(doc_ant.año + ' ' + str(fecha['año']))
     if request.method == 'POST':
         form = DocumentoForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.usuario = request.user
-
-            obj.num = 1
+            if val and doc_ant.año == str(fecha['año']):
+                obj.num = doc_ant.num + 1
+            else:
+                obj.num = 1
             obj.creacion = fecha_str
             obj.año = fecha['año']
 
@@ -80,12 +87,17 @@ def Document_create(request):
         return redirect('document:documento_list')
     else:
         form = DocumentoForm()
-
-
-    data = {
-        'pie_anterior': '',
-        'num': doc_ant['num']  # cambiar por el siguiente numeromde la base de datos
-    }
+    print(doc_ant)
+    if val:
+        data = {
+            'pie_anterior': doc_ant.piepag,
+            'num': doc_ant.num  # cambiar por el siguiente numeromde la base de datos
+        }
+    else:
+        data = {
+            'pie_anterior': 'Texto',
+            'num': doc_ant['num']  # cambiar por el siguiente numeromde la base de datos
+        }
     return render(request, 'document/documento_form.html', dict(form=form, fecha=fecha, data=data))
 
 
