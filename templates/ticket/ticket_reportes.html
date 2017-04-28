@@ -1,13 +1,13 @@
 {% extends 'base/base.html' %}
-{% block title %} Crear Ticket {% endblock %}
-{% block titulo %} Crear ticket {% endblock %}
+{% block title %} Estados de Ticket {% endblock %}
+{% block titulo %} Estados de ticket {% endblock %}
 {% load widget_tweaks %}
 {% block content %}
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3>
-            Por favor, complete el siguiente formulario para crear un nuevo Documento.
+            Este es el estado actual de los ticket ingresados.
         </h3>
         </div>
         <div class="row panel-body">
@@ -16,7 +16,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-file-text-o fa-5x"></i>
+                                <i class="fa fa-list-alt fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">{{ total }}</div>

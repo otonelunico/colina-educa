@@ -65,7 +65,7 @@ def Document_create(request):
         val = False
 
     fecha = Fecha_actual()
-    fecha_str = str(fecha['dia']) + " " + fecha['mes'] + " " + str(fecha['año'])
+    fecha_str = fecha['ndia']+", "+str(fecha['dia']) + " de " + fecha['mes'] + " del " + str(fecha['año'])
     print(doc_ant.año + ' ' + str(fecha['año']))
     if request.method == 'POST':
         form = DocumentoForm(request.POST)
@@ -78,13 +78,12 @@ def Document_create(request):
                 obj.num = 1
             obj.creacion = fecha_str
             obj.año = fecha['año']
-
             form.save()
         else:
             print(form.is_valid())
             print(form.errors)
             form = DocumentoForm(request.POST)
-        return redirect('document:documento_list')
+        return redirect('document:documento_detalle', obj.id)
     else:
         form = DocumentoForm()
     print(doc_ant)
@@ -117,6 +116,11 @@ class Document_list(ListView):
     model = Documento
     tempalte_name = 'document/documento_list.html'
 
-def Pdf_documento():
+def Detalle_doc(request, id_docum):
+    data = {
+        'detalle': Documento.objects.get(id=id_docum)
+    }
+    print(data)
 
-    tempalte_name = 'document/documento_list.html'
+    return render(request, "document/detalle_documento.html", data)
+

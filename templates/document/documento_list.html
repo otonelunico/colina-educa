@@ -30,7 +30,7 @@
 					<tr class="odd gradeX">
 
 						<td>{{ documentos.num }}</td>
-						<td> <a href=""> <B>{{ documentos.mat }}</B></a></td>
+						<td> <a href="{% url 'document:documento_detalle' documentos.id %}"> <B>{{ documentos.mat }}</B></a></td>
 						<td>{{ documentos.creacion }}</td>
 						<td>{{ documentos.tipo }}</td>
 						<td>{{ documentos.desde }}</td>
@@ -44,9 +44,6 @@
                                         </button>
                                         <ul class="dropdown-menu pull-right" role="menu">
                                             </li>
-                                            <li><a class="btn" href="">Imprimir</a>
-                                            </li>
-                                            <li class="divider"></li>
                                             <li><a class="btn" href="">Editar</a>
                                             </li>
                                             <li class="divider"></li>

@@ -5,7 +5,7 @@
     <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3>
-		Listados de usuarios registrados.
+		<i class="fa fa-list-ol fa-fw"></i> Listados de ticket ingresados.
 	</h3>
 	</div>
     <div class="panel-body">
@@ -20,7 +20,7 @@
 						<th>Solicitado</th>
 						<th>asignado</th>
 						<th>Creacion</th>
-						<th>Estado</th>
+						<th style="width: 120px;">Estado</th>
 						<th style="width: 120px;">Acciones</th>
 					</tr>
 	            </thead>
@@ -38,7 +38,25 @@
 						<td>{{ ticket.nom_contacto }} {{ ticket.ape_contacto }}</td>
 						<td>{{ ticket.asignado }}</td>
 						<td>{{ ticket.fecha_creacion }}</td>
-						<td>{{ ticket.estado }}</td>
+						<td>
+							<div class="row" align="center">
+							<div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            {{ ticket.estado }}
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                            <li><a class="btn" href="{% url 'ticket:estado_edit' ticket.id '0' %}"><i class="fa  fa-exclamation fa-fw"></i> Abierto</a>
+                                            </li>
+                                            <li><a class="btn" href="{% url 'ticket:estado_edit' ticket.id '1' %}"><i class="fa  fa-check fa-fw"></i> Cerrado</a>
+                                            </li>
+                                            <li><a class="btn" href="{% url 'ticket:estado_edit' ticket.id '2' %}"><i class="fa  fa-clock-o fa-fw"></i> Pendiente</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+							</div>
+						</td>
 						<td>
 							<div class="row" align="center">
 							<div class="btn-group">
@@ -47,23 +65,18 @@
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu pull-right" role="menu">
-                                        <!--    <li><a class="btn " href="#">Cambiar estado</a> -->
-                                            </li>
-                                            <li><a class="btn" href="{% url 'ticket:ticket_edit' ticket.id %}">Editar</a>
+                                            <li><a class="btn" href="{% url 'ticket:ticket_edit' ticket.id %}"><i class="fa  fa-print fa-fw"></i> Imprimir</a>
                                             </li>
                                             <li class="divider"></li>
-                                            <li><a class="btn btn-danger" href="{% url 'ticket:ticket_delete' ticket.id %}"> Eliminar</a>
+                                            <li><a class="btn" style="color: darkblue" href="{% url 'ticket:ticket_edit' ticket.id %}"><i class="fa  fa-edit fa-fw"></i> Editar</a>
                                             </li>
-                                            
+                                            <li class="divider"></li>
+                                            <li><a class="btn" style="color: darkred" href="{% url 'ticket:ticket_delete' ticket.id %}"><i class="fa  fa-times fa-fw"></i> Eliminar</a>
+                                            </li>
+
                                             
                                         </ul>
                                     </div>
-							<!--	<div class="col-lg-6">
-									<a class="btn btn-primary" href="{% url 'ticket:ticket_edit' ticket.id %}"> Editar</a>
-								</div>
-								<div class="col-lg-6">
-									<a class="btn btn-danger" href="{% url 'ticket:ticket_delete' ticket.id %}"> Eliminar</a>
-								</div> -->
 							</div>
 						</td>
 					</tr>

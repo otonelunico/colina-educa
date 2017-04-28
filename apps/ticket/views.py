@@ -5,7 +5,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from django.contrib.auth.models import User
 from apps.ticket.forms import TicketForm,EstablecimientoForm, TemaForm
-from apps.ticket.models import Ticket, Establecimiento, Tema
+from apps.ticket.models import Ticket, Establecimiento, Tema, Estado
 
 
 # Create your views here.
@@ -69,15 +69,20 @@ class TicketDelete(DeleteView):
     model = Ticket
     success_url = reverse_lazy('ticket:ticket_list')
 
-class EstablecimientoCreate(CreateView):
-    model = Establecimiento
-    form_class = EstablecimientoForm
-    success_url = reverse_lazy('ticket:ticket_form')
-
-class TemaCreate(CreateView):
-    model = Tema
-    form_class = TemaForm
-    success_url = reverse_lazy('ticket:ticket_form')
+def TemaCreate(request, value):
+    if value == 'tema':
+        form = TemaForm(request.POST)
+        data = {'value' : 'tema'}
+    elif value == 'establecimiento':
+        form = EstablecimientoForm(request.POST)
+        data = {'value': 'establecimiento'}
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+        return redirect('ticket:ticket_form')
+    else:
+        form = TemaForm()
+    return render(request, 'ticket/nuevo_form.html', {'form': form, 'data': data})
 
 def EstadosView(request):
     total = Ticket.objects.filter().count()
@@ -100,3 +105,12 @@ def ticket_detalle(request, id_ticket):
     print (data)
 
     return render(request,"ticket/ticket_detalle.html", data)
+
+def Cambiar_estado(request, id_ticket, id_estado):
+    print(id_ticket+' - '+id_estado)
+    ticket = Ticket.objects.get(id=id_ticket)
+    estado = Estado.objects.get(id=id_estado)
+    ticket.estado = estado
+    print(estado)
+    ticket.save()
+    return redirect('ticket:ticket_list')

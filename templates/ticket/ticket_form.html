@@ -17,12 +17,12 @@
                     <div class="col-lg-6">
                         <h4>Seleccione tema.</h4>
                         {% render_field form.tema %} 
-                         <p align="right"><a href="{% url 'ticket:tema_form' %}">Nuevo</a></p>
+                         <p align="right"><a href="{% url 'ticket:nuevo_form' 'tema' %}">Nuevo</a></p>
                     </div>
                     <div class="col-md-6 ">
                     <h4>Establecimiento de solicitud</h4>
                     {% render_field form.establecimiento %}
-                    <p align="right"><a href="{% url 'ticket:establ_form' %}">Nuevo</a></p>
+                    <p align="right"><a href="{% url 'ticket:nuevo_form' 'establecimiento'%}">Nuevo</a></p>
                         <br>
                     </div>
                 </div>

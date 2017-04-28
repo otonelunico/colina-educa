@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+{% block title %} Detalle de documento N°{{ detalle.num }} {% endblock %}
+{% block titulo %} Detalle de documento. {% endblock %}
+{% load widget_tweaks %}
+{% block content %}
+    <script>
+        function documento(documento){
+            var ficha=document.getElementById(documento);
+            var ventimp=window.open(' ','popimpr');
+              ventimp.document.write(ficha.innerHTML);
+              ventimp.document.close();
+              ventimp.print();
+              ventimp.close();
+        }
+    </script>
+<div >
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-10">
+                    <h3>Documento N° {{ detalle.num }} </h3>
+                </div>
+                <div class="col-lg-2" align="right">
+                    <div class="btn-group" style="margin-top: 8%">
+                        <a href="javascript:documento('documento')" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding-left: 7%; padding-top: 7%">
+            <div id="documento" class="row" >
+                <style type="text/css">
+                .doc__ { font-family: 'Calibri', Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;}
+                </style>
+                <div class="col-lg-10 doc__" >
+                    <br>
+                    <div>
+                        <div class="doc__" style="float: left; margin-left: 8%;">
+                            <img src="/media/img/logo.png" alt="logo" width="250px" height="auto">
+                            <p style="font-size: large"> Colina, {{ detalle.creacion }}</p>
+                        </div>
+                        <div style="text-align: left; width: auto;  font-size: 14px;">
+                            <br>
+                            <p style="font-size: larger"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <b>NUM.:</b> {{ detalle.num }}</p>
+                            <br>
+                            <p style="font-size: larger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <b>MAT.:</b> {{ detalle.mat }} </p>
+                        </div>
+                    </div>
+                    <br><br><br><br>
+                    <div align="center">
+                        <p style="font-size: x-large"> <b>{{ detalle.tipo }}</b></p>
+                    </div>
+                    <br>
+                    <div style="float: left; margin-left: 10%">
+                        <br>
+                        <p class="doc__" style="font-size: large"><b>DE:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <br><br>
+
+                        <p class="doc__" style="font-size: large"><b>PARA:</b></p>
+                    </div>
+                    <div style="text-align: left">
+
+                        <p class="doc__" style="font-size: large">{{ detalle.desde.nombre }} {{ detalle.desde.apellidos }}<br>{{ detalle.desde.cargo }}</p>
+                        <br>
+                        <p class="doc__" style="font-size: large">{{ detalle.para.nombre }} {{ detalle.para.apellidos }}<br>{{ detalle.para.cargo }}</p>
+                    </div>
+                    <br>
+                    <div style="text-align: justify; font-size: large; height: 600px; width: 100%; margin-left: 8%; margin-right: 8%">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <p style="margin-right: 8%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ detalle.cuerpo }}</p>
+                    </div>
+                    <div style="font-size: large; margin-left: 8%">
+                       {{ detalle.piepag }}
+
+                    </div>
+                    <br><br><br>
+                </div>
+            </div>
+            <div align="right">**Correlativo interno {{ detalle.id }}</div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
