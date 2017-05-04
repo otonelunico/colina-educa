@@ -48,7 +48,7 @@ def Fecha_actual():
         'ndia': sw_dia(y),
         'dia': x.day,
         'mes': sw_mes(x.month),
-        'año': x.year
+        'ano': x.year
     }
     return fecha
 
@@ -65,19 +65,18 @@ def Document_create(request):
         val = False
 
     fecha = Fecha_actual()
-    fecha_str = fecha['ndia']+", "+str(fecha['dia']) + " de " + fecha['mes'] + " del " + str(fecha['año'])
-    print(doc_ant.año + ' ' + str(fecha['año']))
+    fecha_str = fecha['ndia']+", "+str(fecha['dia']) + " de " + fecha['mes'] + " del " + str(fecha['ano'])
     if request.method == 'POST':
         form = DocumentoForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.usuario = request.user
-            if val and doc_ant.año == str(fecha['año']):
+            if val and doc_ant.ano == str(fecha['ano']):
                 obj.num = doc_ant.num + 1
             else:
                 obj.num = 1
             obj.creacion = fecha_str
-            obj.año = fecha['año']
+            obj.ano = fecha['ano']
             form.save()
         else:
             print(form.is_valid())
