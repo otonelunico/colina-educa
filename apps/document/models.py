@@ -9,6 +9,7 @@ class Desde(models.Model):
 	nombre = models.CharField(max_length=50)
 	apellidos = models.CharField(max_length=50)
 	cargo = models.CharField(max_length=100)
+	activo = models.BooleanField(default=True)
 	def __str__(self):
 		return '{}'.format(self.nombre+" "+self.apellidos+" - "+self.cargo) 
 
@@ -16,6 +17,7 @@ class Para(models.Model):
 	nombre = models.CharField(max_length=50)
 	apellidos = models.CharField(max_length=50)
 	cargo = models.CharField(max_length=100)
+	activo = models.BooleanField(default=True)
 	def __str__(self):
 		return '{}'.format(self.nombre+" "+self.apellidos+" - "+self.cargo) 
 
@@ -35,5 +37,6 @@ class Documento(models.Model):
 	creacion = models.TextField()
 	año =  models.TextField()
 	usuario = models.ForeignKey(User, null=False, blank=True, on_delete=models.CASCADE)
+	activo = models.BooleanField(default=True)
 
 
