@@ -115,7 +115,8 @@ def Create_value(request, value):
             return redirect('document:create_value', value)
     elif value == 'para':
         data={'titulo' :'Destinatario',
-              'tema' : 'destinatario'}
+              'tema' : 'destinatario',
+                'value': value}
         model = Para.objects.filter(activo=True).order_by('nombre')
         form= ParaForm()
         if request.method == 'POST':

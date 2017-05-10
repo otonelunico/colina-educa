@@ -6,6 +6,7 @@ from apps.document.views import Document_create, Detalle_doc, Create_value, Acti
     DocumentoCreate
 
 urlpatterns = [
+    url(r'^$', Document_create, name='document_form'),
     url(r'^nuevo$', Document_create, name='document_form'),
     url(r'^nuevo/(?P<value>\w+)$', Create_value, name='create_value'),
     url(r'^active_off/(?P<value>\w+)/(?P<id_value>\d+)$', Active_off, name='active_off'),
