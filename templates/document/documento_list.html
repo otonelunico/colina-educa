@@ -5,12 +5,12 @@
     <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3>
-		Listados de usuarios registrados.
+		Listados de documentos.
 	</h3>
 	</div>
     <div class="panel-body">
     	<div class="dataTable_wrapper">
-            <table class="table table-striped table-bordered table-hover dataTable" id="dataTables-example">
+            <table class="table table-striped table-hover dataTable" id="dataTables-example">
 	            <thead>
 	                <tr>
 						<th>#</th>
@@ -24,12 +24,10 @@
 	            </thead>
 	            <tbody>
 
-				{% if object_list %}
-				{% for documentos in object_list %}
-
-					<tr class="odd gradeX">
-
-						<td>{{ documentos.num }}</td>
+				{% for documentos in model %}
+                    {% if documentos.activo %}
+					<tr class="odd gradeX" >
+						<td >{{ documentos.num }}</td>
 						<td> <a href="{% url 'document:documento_detalle' documentos.id %}"> <B>{{ documentos.mat }}</B></a></td>
 						<td>{{ documentos.creacion }}</td>
 						<td>{{ documentos.tipo }}</td>
@@ -38,16 +36,18 @@
 						<td>
 							<div class="row" align="center">
 							<div class="btn-group">
-                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                             Acciones
                                             <span class="caret"></span>
-                                        </button>
+                                        </a>
                                         <ul class="dropdown-menu pull-right" role="menu">
+                                            </li>
+                                            <li><a class="btn" href="">Imprimir</a>
                                             </li>
                                             <li><a class="btn" href="">Editar</a>
                                             </li>
                                             <li class="divider"></li>
-                                            <li><a class="btn " style="color: darkred" href=""> Eliminar</a>
+                                            <li><a class="btn " style="color: darkred" href="{% url 'document:active_off' 'documento' documentos.id %}"> Anular</a>
                                             </li>
 
 
@@ -57,10 +57,21 @@
 							</div>
 						</td>
 					</tr>
+                    {% else %}
+
+					<tr class="odd gradeX" style="color: #737373">
+
+						<td>{{ documentos.num }}</td>
+						<td> <B>{{ documentos.mat }}</B></td>
+						<td>{{ documentos.creacion }}</td>
+						<td>{{ documentos.tipo }}</td>
+						<td>{{ documentos.desde }}</td>
+						<td>{{ documentos.para }}</td>
+						<td align="center">Nulo</td>
+					</tr>
+                    {% endif %}
 					{% endfor %}
-					{% else %}
-					<h1>No hay registro</h1>
-					{% endif %}
+
 				</tbody>
 			</table>
 		</div>

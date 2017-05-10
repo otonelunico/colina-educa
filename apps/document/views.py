@@ -9,6 +9,7 @@ import datetime, time
 
 class DocumentoCreate(CreateView):
     model = Documento
+    data = {'value' :'documento'}
     form_class = DocumentoForm
     tempalte_name = 'ticket/ticket_form.html'
     success_url = reverse_lazy('document:document_form')
@@ -71,6 +72,8 @@ def Document_create(request):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.usuario = request.user
+            print(doc_ant.ano)
+            print (str(fecha['ano']))
             if val and doc_ant.ano == str(fecha['ano']):
                 obj.num = doc_ant.num + 1
             else:
@@ -98,22 +101,52 @@ def Document_create(request):
         }
     return render(request, 'document/documento_form.html', dict(form=form, fecha=fecha, data=data))
 
+def Create_value(request, value):
+    if value == 'desde':
+        data = {'titulo': 'Remitente',
+                'tema': 'remitente',
+                'value': value}
+        model = Desde.objects.filter(activo=True).order_by('nombre')
+        form= DesdeForm()
+        if request.method == 'POST':
+            form = DesdeForm(request.POST)
+            if form.is_valid():
+                form.save()
+            return redirect('document:create_value', value)
+    elif value == 'para':
+        data={'titulo' :'Destinatario',
+              'tema' : 'destinatario'}
+        model = Para.objects.filter(activo=True).order_by('nombre')
+        form= ParaForm()
+        if request.method == 'POST':
+            form = ParaForm(request.POST)
+            if form.is_valid():
+                form.save()
+            return redirect('document:create_value', value)
 
-class ParaCreate(CreateView):
-    model = Para
-    form_class = ParaForm
-    template_name ="document/nuevo_desdepara.html"
-    success_url = reverse_lazy('document:document_form') 
+    return render(request, 'document/create_value.html', {'form' :form, 'model': model, 'data': data})
 
-class DesdeCreate(CreateView):
-    model = Desde
-    form_class = DesdeForm
-    template_name ="document/nuevo_desdepara.html"
-    success_url = reverse_lazy('document:document_form')
+def Active_off(request, value, id_value):
+    if value == 'desde':
+        value_ = Desde.objects.get(id=id_value)
+        value_.activo = False
+        value_.save()
+        return redirect('document:create_value', value)
+    elif value == 'para':
+        value_ = Para.objects.get(id=id_value)
+        value_.activo = False
+        value_.save()
+        return redirect('document:create_value', value)
+    elif value == 'documento':
+        value_ = Documento.objects.get(id=id_value)
+        value_.activo = False
+        value_.save()
+        return redirect('document:documento_list')
 
-class Document_list(ListView):
-    model = Documento
-    tempalte_name = 'document/documento_list.html'
+def Documento_list(request):
+    model = Documento.objects.all().order_by('id')
+    return render(request, 'document/documento_list.html', {'model': model})
+
 
 def Detalle_doc(request, id_docum):
     data = {

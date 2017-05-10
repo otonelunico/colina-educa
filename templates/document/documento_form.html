@@ -25,14 +25,14 @@
                     {% render_field form.mat %}  
                     <h4>Remitente</h4>
                     {% render_field form.desde %}
-                    <p align="right"><a href="{% url 'document:desde_form' %}">Nuevo</a></p>                   
+                    <p align="right"><a href="{% url 'document:create_value' 'desde' %}">Nuevo</a></p>
                     </div>
                     <div class="col-md-6 ">
                     <h4>Tipo de documento</h4>
                     {% render_field form.tipo %}
                     <h4>Destinatario</h4>
                     {% render_field form.para %}
-                    <p align="right"><a href="{% url 'document:para_form' %}">Nuevo</a></p>
+                    <p align="right"><a href="{% url 'document:create_value' 'para' %}">Nuevo</a></p>
                         <br>
                     </div>
                 </div>

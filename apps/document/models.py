@@ -35,7 +35,7 @@ class Documento(models.Model):
 	cuerpo = models.TextField()
 	piepag = models.TextField()
 	creacion = models.TextField()
-	año =  models.TextField()
+	ano =  models.TextField()
 	usuario = models.ForeignKey(User, null=False, blank=True, on_delete=models.CASCADE)
 	activo = models.BooleanField(default=True)
 
