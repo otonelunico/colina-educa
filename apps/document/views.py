@@ -143,6 +143,18 @@ def Active_off(request, value, id_value):
         value_.save()
         return redirect('document:documento_list')
 
+
+def Documento_edit(request, id_documento):
+    model = Documento.objects.get(id=id_documento)
+    if request.method == "GET":
+        form = DocumentoForm(instance=model)
+    else:
+        form = DocumentoForm(request.POST, instance=model)
+        if form.is_valid():
+            form.save()
+        return redirect('document:documento_list')
+    return render(request, 'document/documento_form.html', {'form': form})
+
 def Documento_list(request):
     model = Documento.objects.all().order_by('id')
     return render(request, 'document/documento_list.html', {'model': model})
