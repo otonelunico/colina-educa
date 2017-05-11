@@ -1,10 +1,11 @@
 {% extends 'base/base.html' %}
+{% block titulo %} Listado{% endblock %}
 {% block content %}
 <div class="row">
     <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3>
-		<i class="fa fa-list-alt fa-fw"></i> Listados de documentos.
+		Listados de documentos.
 	</h3>
 	</div>
     <div class="panel-body">
@@ -17,7 +18,7 @@
 						<th>Fecha</th>
 						<th>Tipo</th>
 						<th>Remitente</th>
-						<th>Destinatario</th>
+						<th></th>
 						<th style="width: 120px;">Acciones</th>
 					</tr>
 	            </thead>
@@ -30,8 +31,8 @@
 						<td> <a href="{% url 'document:documento_detalle' documentos.id %}"> <B>{{ documentos.mat }}</B></a></td>
 						<td>{{ documentos.creacion }}</td>
 						<td>{{ documentos.tipo }}</td>
-						<td>{{ documentos.desde }}</td>
-						<td>{{ documentos.para }}</td>
+						<td>{{ documentos.desde.nombre }} {{ documentos.desde.apellidos }}</td>
+						<td>{{ documentos.para.nombre }} {{ documentos.para.apellidos }}</td>
 						<td>
 							<div class="row" align="center">
 							<div class="btn-group">
@@ -64,8 +65,8 @@
 						<td> <B>{{ documentos.mat }}</B></td>
 						<td>{{ documentos.creacion }}</td>
 						<td>{{ documentos.tipo }}</td>
-						<td>{{ documentos.desde }}</td>
-						<td>{{ documentos.para }}</td>
+						<td>{{ documentos.desde.nombre }} {{ documentos.desde.apellidos }}</td>
+						<td>{{ documentos.para.nombre }} {{ documentos.para.apellidos }}</td>
 						<td align="center">Nulo</td>
 					</tr>
                     {% endif %}
