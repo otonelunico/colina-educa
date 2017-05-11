@@ -25,49 +25,50 @@
                 </div>
             </div>
         </div>
-        <div style="padding-left: 7%; padding-top: 7%">
+        <div style="padding-left: 15%; padding-top: 7%">
             <div id="documento" class="row" >
                 <style type="text/css">
                 .doc__ { font-family: 'Calibri', Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;}
+                .primeralinea {  text-indent: 90px;
+}
                 </style>
-                <div class="col-lg-10 doc__" >
+                <div class="col-lg-12 doc__" >
                     <br>
                     <div>
                         <div class="doc__" style="float: left; margin-left: 8%;">
-                            <img src="/media/img/logo.png" alt="logo" width="250px" height="auto">
-                            <p style="font-size: large"> Colina, {{ detalle.creacion }}</p>
+                            <img src="/media/img/logo.png" alt="logo" width="200px" height="auto"><br>
+                            <p style="font-size: large">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Colina, {{ detalle.creacion }}</p>
                         </div>
                         <div style="text-align: left; width: auto;  font-size: 14px;">
                             <br>
-                            <p style="font-size: larger"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <p style="font-size: larger"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <b>NUM.:</b> {{ detalle.ano }}/{{ detalle.num }}</p>
                             <br>
-                            <p style="font-size: larger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <p style="font-size: larger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <b>MAT.:</b> {{ detalle.mat }} </p>
                         </div>
                     </div>
                     <br><br><br><br>
                     <div align="center">
-                        <p style="font-size: x-large"> <b>{{ detalle.tipo }}</b></p>
+                        <p style="font-size: 20pt"> <b>{{ detalle.tipo }}</b></p>
                     </div>
                     <br>
-                    <div style="float: left; margin-left: 10%">
-                        <br>
-                        <p class="doc__" style="font-size: large"><b>DE:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <div style="float: left; margin-left: 20%">
+
+                        <p class="doc__" style="font-size: 16pt;"><b>DE:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                         <br><br>
 
-                        <p class="doc__" style="font-size: large"><b>PARA:</b></p>
+                        <p class="doc__" style="font-size: 16pt;"><b>PARA:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><br><br>
                     </div>
-                    <div style="text-align: left">
+                    <div style="text-align: left;">
 
-                        <p class="doc__" style="font-size: large">{{ detalle.desde.nombre }} {{ detalle.desde.apellidos }}<br>{{ detalle.desde.cargo }}</p>
+                        <p class="doc__" style="font-size: 16pt;">{{ detalle.desde.nombre }} {{ detalle.desde.apellidos }}<br>{{ detalle.desde.cargo }}</p>
                         <br>
-                        <p class="doc__" style="font-size: large">{{ detalle.para.nombre }} {{ detalle.para.apellidos }}<br>{{ detalle.para.cargo }}</p>
+                        <p class="doc__" style="font-size: 16pt;">{{ detalle.para.nombre }} {{ detalle.para.apellidos }}<br>{{ detalle.para.cargo }}</p>
                     </div>
                     <br>
-                    <div style="text-align: justify; font-size: large; height: 550px; width: 100%; margin-left: 8%; margin-right: 8%">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <p style="margin-right: 8%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ detalle.cuerpo|linebreaks }}</p>
+                    <div class="primeralinea" style="text-align: justify; font-size: 16pt; height: 350px; width: 610px; margin-left: 8%; margin-right: 8%">
+                        <p style="margin-right: 8%;"> {{ detalle.cuerpo|linebreaks }}</p>
                     </div>
                     <div style="font-size: large; margin-left: 8%; float: left"><br><br><br><br>
                        {{ detalle.piepag|linebreaks }}
