@@ -43,6 +43,6 @@ def Cuenta_edit(request):
         form = RegistroForm(request.POST, instance=obj)
         if form.is_valid():
             form.save()
-        return redirect('usuario:modif_usuario')
+        return redirect('logout')
     return render(request, 'auth/user_form.html', {'form': form})
 
