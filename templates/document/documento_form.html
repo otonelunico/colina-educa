@@ -20,17 +20,17 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <h4>Materia:</h4>
-                    {% render_field form.mat %}  
                     <h4>Remitente</h4>
                     {% render_field form.desde %}
+                        <h4>Materia:</h4>
+                    {% render_field form.mat %}
                     <p align="right"><a href="{% url 'document:create_value' 'desde' %}">Mantenedor de remitentes</a></p>
                     </div>
                     <div class="col-md-6 ">
-                    <h4>Tipo de documento</h4>
-                    {% render_field form.tipo %}
                     <h4>Destinatario</h4>
                     {% render_field form.para %}
+                    <h4>Tipo de documento</h4>
+                    {% render_field form.tipo %}
                     <p align="right"><a href="{% url 'document:create_value' 'para' %}">Mantenedor de destinatarios</a></p>
                         <br>
                     </div>

@@ -15,11 +15,15 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-8">
                     <h3><i class="fa fa-file-text fa-fw"></i> Documento N°  {{ detalle.ano }}/{{ detalle.num }} </h3>
                 </div>
-                <div class="col-lg-2" align="right">
-                    <div class="btn-group" style="margin-top: 8%">
+                <div class="col-lg-4" align="right">
+                    <div class="btn-group" style="margin-top: 4%">
+                        <a class="btn btn-default" href="{% url 'document:documento_edit' detalle.id %}"><i class="fa fa-edit"></i> Editar</a>
+
+                    </div>
+                    <div class="btn-group" style="margin-top: 4%">
                         <a href="javascript:documento('documento')" class="btn btn-primary"><i class="fa fa-print"></i> Imprimir</a>
                     </div>
                 </div>
@@ -37,14 +41,14 @@
                     <div>
                         <div class="doc__" style="float: left; margin-left: 8%;">
                             <img src="/media/img/logo.png" alt="logo" width="200px" height="auto"><br>
-                            <p style="font-size: 16pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Colina, {{ detalle.creacion }}</p>
+                            <p style="font-size: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Colina, {{ detalle.creacion }}</p>
                         </div>
                         <div style="text-align: left; width: auto;  font-size: 14px;">
                             <br>
-                            <p style="font-size: 16pt"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <p style="font-size: 12pt"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <b>NUM.:</b> {{ detalle.ano }}/{{ detalle.num }}</p>
                             <br>
-                            <p style="font-size: 16pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <p style="font-size: 12pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <b>MAT.:</b> {{ detalle.mat }} </p>
                         </div>
                     </div>
@@ -55,25 +59,25 @@
                     <br>
                     <div style="float: left; margin-left: 20%">
 
-                        <p class="doc__" style="font-size: 16pt;"><b>DE:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <p class="doc__" style="font-size: 12pt;"><b>DE:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                         <br><br>
 
-                        <p class="doc__" style="font-size: 16pt;"><b>PARA:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><br><br>
+                        <p class="doc__" style="font-size: 12pt;"><b>PARA:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><br><br>
                     </div>
                     <div style="text-align: left;">
 
-                        <p class="doc__" style="font-size: 16pt;">{{ detalle.desde.nombre }} {{ detalle.desde.apellidos }}<br>{{ detalle.desde.cargo }}</p>
+                        <p class="doc__" style="font-size: 12pt;">{{ detalle.desde.nombre }} {{ detalle.desde.apellidos }}<br>{{ detalle.desde.cargo }}</p>
                         <br>
-                        <p class="doc__" style="font-size: 16pt;">{{ detalle.para.nombre }} {{ detalle.para.apellidos }}<br>{{ detalle.para.cargo }}</p>
+                        <p class="doc__" style="font-size: 12pt;">{{ detalle.para.nombre }} {{ detalle.para.apellidos }}<br>{{ detalle.para.cargo }}</p>
                     </div>
                     <br>
-                    <div class="primeralinea" style="text-align: justify; font-size: 16pt; height: 350px; width: 610px; margin-left: 8%; margin-right: 8%">
+                    <div class="primeralinea" style="text-align: justify; font-size: 12pt; height: 350px; width: 610px; margin-left: 8%; margin-right: 8%">
                         <p style="margin-right: 8%;"> {{ detalle.cuerpo|linebreaks }}</p>
                     </div>
                     <div style="font-size: large; margin-left: 8%; float: left"><br><br><br><br>
                        {{ detalle.piepag|linebreaks }}
                     </div>
-                    <div style="font-size: 16pt; margin-right: 8%; float:right; text-align: center">
+                    <div style="font-size: 12pt; margin-right: 20%; float:right; text-align: center">
                        {{ detalle.desde.firma|linebreaks }}
                     </div>
                     <br><br><br>

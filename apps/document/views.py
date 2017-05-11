@@ -64,11 +64,6 @@ def Document_create(request):
             'piepag': '',
         }
         val = False
-
-    def get_form_kwargs(self):
-        kwargs = get_form_kwargs()
-        kwargs.update({'request': self.request})
-        return kwargs
     fecha = Fecha_actual()
     fecha_str = fecha['ndia']+", "+str(fecha['dia']) + " de " + fecha['mes'] + " del " + str(fecha['ano'])
     if request.method == 'POST':
@@ -76,8 +71,13 @@ def Document_create(request):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.usuario = request.user
+            tipo_ant = Documento.objects.filter(tipo=obj.tipo)
+            num=0
+            for doc in tipo_ant:
+                print (str(doc.tipo) +" "+ str(doc.num))
+                num=doc.num
             if val and doc_ant.ano == str(fecha['ano']):
-                obj.num = doc_ant.num + 1
+                obj.num = num + 1
             else:
                 obj.num = 1
             obj.creacion = fecha_str
