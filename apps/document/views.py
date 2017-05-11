@@ -76,8 +76,6 @@ def Document_create(request):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.usuario = request.user
-            print(doc_ant.ano)
-            print (str(fecha['ano']))
             if val and doc_ant.ano == str(fecha['ano']):
                 obj.num = doc_ant.num + 1
             else:
@@ -151,6 +149,8 @@ def Active_off(request, value, id_value):
 
 def Documento_edit(request, id_documento):
     model = Documento.objects.get(id=id_documento)
+    data={'pie_anterior': model.piepag,
+          'cuerpo': model.cuerpo}
     if request.method == "GET":
         form = DocumentoForm(instance=model)
     else:
@@ -158,12 +158,11 @@ def Documento_edit(request, id_documento):
         if form.is_valid():
             form.save()
         return redirect('document:documento_list')
-    return render(request, 'document/documento_form.html', {'form': form})
+    return render(request, 'document/documento_form.html', {'form': form,'data': data})
 
 def Documento_list(request):
     model = Documento.objects.all().order_by('id')
     return render(request, 'document/documento_list.html', {'model': model})
-
 
 def Detalle_doc(request, id_docum):
     data = {
