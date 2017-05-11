@@ -59,7 +59,7 @@
 					</tr>
                     {% else %}
 
-					<tr class="odd gradeX" style="color: #737373">
+					<tr class="odd gradeX" style="color: #737373;">
 
 						<td>{{ documentos.ano }}/{{ documentos.num }}</td>
 						<td> <B>{{ documentos.mat }}</B></td>
@@ -67,7 +67,7 @@
 						<td>{{ documentos.tipo }}</td>
 						<td>{{ documentos.desde.nombre }} {{ documentos.desde.apellidos }}</td>
 						<td>{{ documentos.para.nombre }} {{ documentos.para.apellidos }}</td>
-						<td align="center">Nulo</td>
+                        <td align="center"> <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="color: #737373;" aria-expanded="false">Nulo</a></td>
 					</tr>
                     {% endif %}
 					{% endfor %}
