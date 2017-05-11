@@ -65,6 +65,10 @@ def Document_create(request):
         }
         val = False
 
+    def get_form_kwargs(self):
+        kwargs = get_form_kwargs()
+        kwargs.update({'request': self.request})
+        return kwargs
     fecha = Fecha_actual()
     fecha_str = fecha['ndia']+", "+str(fecha['dia']) + " de " + fecha['mes'] + " del " + str(fecha['ano'])
     if request.method == 'POST':

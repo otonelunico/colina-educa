@@ -5,7 +5,7 @@
     <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3>
-		Listados de usuarios registrados.
+		<i class="fa fa-users fa-fw"></i> Listados de usuarios registrados.
 	</h3>
 	</div>
 	<table class="table table-bordered">
@@ -29,15 +29,26 @@
 				<td>{{ User.first_name }}</td>
 				<td>{{ User.last_name }}</td>
 				<td>
-					<div class="row" align="center">
-						<div class="col-lg-6">
-							<a class="btn btn-primary" href="{% url 'usuario:modif_usuario' User.id %}"> Editar</a>
-						</div>
-						<div class="col-lg-6">
-							<a class="btn btn-danger" href="{% url 'usuario:elim_usuario' User.id %}"> Eliminar</a>
-						</div>
-					</div>
-				</td>
+							<div class="row" align="center">
+							<div class="btn-group">
+                                        <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            Acciones
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+
+                                            <li>
+                                                <a class="btn"  href="{% url 'usuario:modif_usuario' User.id %}"> Editar</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a class="btn" style="color: darkred" href="{% url 'usuario:elim_usuario' User.id %}"> Eliminar</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+							</div>
+						</td>
 			</tr>
 			{% endfor %}
 			{% else %}

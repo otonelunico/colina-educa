@@ -70,16 +70,16 @@
                            <li class="sidebar-search">
                                 <div class="input-group custom-search-form">
 
-<a href="{% url 'document:document_form' %}">&nbsp;&nbsp;<img src="/media/img/logo_colinaeduca.png" alt="logo" width="80%" height="auto"></a>
+                                    <a href="{% url 'document:document_form' %}">&nbsp;&nbsp;<img src="/media/img/logo_colinaeduca.png" alt="logo" width="80%" height="auto"></a>
                                 </div>
                             </li>
                         <!--    <li><a href="{% url 'document:document_form'  %}"><i class="fa fa-file-text fa-fw"></i> Inicio</a></li> -->
 
                             <li>
-                            <a href=""><i class="fa fa-list-alt fa-fw"></i> Documentos<span class="fa arrow"></span></a>
+                            <a href=""><i class="fa fa-file-text fa-fw"></i> Documentos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li><a href="{% url 'document:document_form' %}"><i class="fa fa-check-square-o fa-fw"></i> Nuevo</a></li>
-                                <li><a href="{% url 'document:documento_list' %}"><i class="fa fa-file fa-fw"></i> Listado</a></li>
+                                <li><a href="{% url 'document:document_form' %}"><i class="fa fa-file fa-fw"></i> Nuevo</a></li>
+                                <li><a href="{% url 'document:documento_list' %}"><i class="fa fa-list-alt fa-fw"></i> Listado</a></li>
                             </ul>
                             </li>
                             <li>
@@ -91,10 +91,10 @@
                             </ul> -->
                             </li>
                             <li>
-                                <a href=""><i class="fa fa-sitemap fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
+                                <a href=""><i class="fa fa-user fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="{% url 'usuario:usuario_list' %}"><i class="fa fa-file-text fa-fw"></i> Listado</a></li>
-                                    <li><a href="{% url 'usuario:registrar' %}"><i class="fa fa-file-text fa-fw"></i> Registrar</a></li>
+                                    <li><a href="{% url 'usuario:usuario_list' %}"><i class="fa fa-users fa-fw"></i> Listado</a></li>
+                                    <li><a href="{% url 'usuario:registrar' %}"><i class="fa fa-user-plus fa-fw"></i> Registrar</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -106,12 +106,7 @@
 
     <!-- Page Content -->
     <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"> {% block titulo %} Home {% endblock %}</h1>
-                </div>
-            </div>
+        <div class="container-fluid page-header">
     {% block content %}
         {% endblock %}
 

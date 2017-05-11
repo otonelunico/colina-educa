@@ -1,32 +1,41 @@
 {% extends 'base/base.html' %}
 {% block title %} Crear {{ data.titulo }} {% endblock %}
-{% block titulo %} Crear {{ data.tema }} {% endblock %}
 {% load widget_tweaks %}
 {% block content %}
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3>
-            Por favor, complete el siguiente formulario para crear un nuevo {{ data.tema }}.
+            <i class="fa fa-plus fa-fw"></i> Por favor, complete el siguiente formulario para crear un nuevo {{ data.tema }}.
         </h3>
         </div>
         <div class="panel-body">
             <form method="post">
                 <div class="row">
                          {% csrf_token %}
+
                         <div class="col-lg-3">
-                            <input type="text" class="form-control" name="nombre" placeholder="Nombre" >
+                            <input type="text" class="form-control" name="nombre" placeholder="Nombre" ><br>
                         </div>
                         <div class="col-lg-3">
-                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" >
+                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" ><br>
                         </div>
-                        <div class="col-lg-3">
-                            <input type="text" class="form-control" name="cargo" placeholder="Cargo" >
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="cargo" placeholder="Cargo" ><br>
                         </div>
-                        <div class="col-lg-3">
-                            <input type="submit" style="width: 90%" class="btn btn-primary" value="Guardar" >
-                        </div>
+
                 </div>
+                <div class="row">
+                    <div class="col-lg-9">
+                        {% if data.value == 'desde' %}
+                         <textarea class="form-control" name="firma" placeholder="Firma" cols="33" rows="2"></textarea>
+                            <br>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-3" style="">
+                        <input type="submit" style="width: 100%" class="btn btn-primary" value="Guardar" ><br>
+                    </div>
+
             </form>
 
         </div>
@@ -37,7 +46,7 @@
     <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3>
-		Listados de {{ data.tema }}s registrados.
+		<i class="fa fa-users fa-fw"></i> Listados de {{ data.tema }}s registrados.
 	</h3>
 	</div>
     <div class="panel-body">

@@ -10,6 +10,7 @@ class Desde(models.Model):
 	apellidos = models.CharField(max_length=50)
 	cargo = models.CharField(max_length=100)
 	activo = models.BooleanField(default=True)
+	firma = models.TextField()
 	def __str__(self):
 		return '{}'.format(self.nombre+" "+self.apellidos+" - "+self.cargo) 
 
@@ -29,11 +30,11 @@ class Tipo_docum(models.Model):
 class Documento(models.Model):
 	tipo= models.ForeignKey(Tipo_docum, null=False, blank=True, on_delete=models.CASCADE)
 	num = models.IntegerField(null=False)
-	mat = models.CharField(max_length=50)
+	mat = models.CharField(max_length=50, null=False)
 	desde = models.ForeignKey(Desde, null=False, blank=True, on_delete=models.CASCADE)
 	para = models.ForeignKey(Para, null=False, blank=True, on_delete=models.CASCADE)
-	cuerpo = models.TextField()
-	piepag = models.TextField()
+	cuerpo = models.TextField(null=False)
+	piepag = models.TextField(null=False)
 	creacion = models.TextField()
 	ano =  models.TextField()
 	usuario = models.ForeignKey(User, null=False, blank=True, on_delete=models.CASCADE)

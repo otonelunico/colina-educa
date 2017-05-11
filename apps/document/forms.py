@@ -29,7 +29,7 @@ class DocumentoForm(forms.ModelForm):
 			'cuerpo': forms.Textarea(attrs={'class':'form-control'}),
 			'piepag': forms.Textarea(attrs={'class':'form-control'}),
 			}
-			
+
 class DesdeForm(forms.ModelForm):
 
 	class Meta:
@@ -38,17 +38,20 @@ class DesdeForm(forms.ModelForm):
 			'nombre',
 			'apellidos',
 			'cargo',
+			'firma'
 		]
 		labels = {
 			'nombre':'Nombre',
 			'apellidos':'Apellidos',
 			'cargo':'Cargo',
+			'firma': 'Firma',
 
 		}
 		widgets = {
 			'nombre': forms.TextInput(attrs={'class':'form-control'}),
 			'apellidos': forms.TextInput(attrs={'class':'form-control'}),
 			'cargo': forms.TextInput(attrs={'class':'form-control'}),
+			'firma': forms.Textarea(attrs={'class':'form-control'}),
 
 		}
 

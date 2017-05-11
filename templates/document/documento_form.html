@@ -1,13 +1,12 @@
 {% extends 'base/base.html' %}
 {% block title %} Crear Documento {% endblock %}
-{% block titulo %} Crear Documento {% endblock %}
 {% load widget_tweaks %}
 {% block content %}
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3>
-            Por favor, complete el siguiente formulario para crear un nuevo Documento.
+            <i class="fa fa-file fa-fw"></i> Por favor, complete el siguiente formulario para crear un nuevo documento.
         </h3>
         </div>
         <div class="panel-body">
@@ -25,14 +24,14 @@
                     {% render_field form.mat %}  
                     <h4>Remitente</h4>
                     {% render_field form.desde %}
-                    <p align="right"><a href="{% url 'document:create_value' 'desde' %}">Nuevo</a></p>
+                    <p align="right"><a href="{% url 'document:create_value' 'desde' %}">Mantenedor de remitentes</a></p>
                     </div>
                     <div class="col-md-6 ">
                     <h4>Tipo de documento</h4>
                     {% render_field form.tipo %}
                     <h4>Destinatario</h4>
                     {% render_field form.para %}
-                    <p align="right"><a href="{% url 'document:create_value' 'para' %}">Nuevo</a></p>
+                    <p align="right"><a href="{% url 'document:create_value' 'para' %}">Mantenedor de destinatarios</a></p>
                         <br>
                     </div>
                 </div>

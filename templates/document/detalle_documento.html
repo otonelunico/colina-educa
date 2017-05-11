@@ -1,7 +1,5 @@
 {% extends 'base/base.html' %}
 {% block title %} Detalle de documento N°{{ detalle.num }} {% endblock %}
-{% block titulo %} Detalle de documento. {% endblock %}
-{% load widget_tweaks %}
 {% block content %}
     <script>
         function documento(documento){
@@ -18,7 +16,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-lg-10">
-                    <h3>Documento N°  {{ detalle.ano }}/{{ detalle.num }} </h3>
+                    <h3><i class="fa fa-file-text fa-fw"></i> Documento N°  {{ detalle.ano }}/{{ detalle.num }} </h3>
                 </div>
                 <div class="col-lg-2" align="right">
                     <div class="btn-group" style="margin-top: 8%">
@@ -67,13 +65,15 @@
                         <p class="doc__" style="font-size: large">{{ detalle.para.nombre }} {{ detalle.para.apellidos }}<br>{{ detalle.para.cargo }}</p>
                     </div>
                     <br>
-                    <div style="text-align: justify; font-size: large; height: 600px; width: 100%; margin-left: 8%; margin-right: 8%">
+                    <div style="text-align: justify; font-size: large; height: 550px; width: 100%; margin-left: 8%; margin-right: 8%">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <p style="margin-right: 8%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ detalle.cuerpo|linebreaks }}</p>
                     </div>
-                    <div style="font-size: large; margin-left: 8%">
+                    <div style="font-size: large; margin-left: 8%; float: left"><br><br><br><br>
                        {{ detalle.piepag|linebreaks }}
-
+                    </div>
+                    <div style="font-size: x-large; margin-right: 8%; float:right; text-align: center">
+                       {{ detalle.desde.firma|linebreaks }}
                     </div>
                     <br><br><br>
                 </div>
