@@ -54,10 +54,10 @@
                     </div>
                     <br><br><br><br>
                     <div align="center">
-                        <p style="font-size: 20pt"> <b>{{ detalle.tipo }}</b></p>
+                        <p style="font-size: 20pt"> <b><u>{{ detalle.tipo }}</u></b></p>
                     </div>
                     <br>
-                    <div style="float: left; margin-left: 20%">
+                <!--    <div style="float: left; margin-left: 20%">
 
                         <p class="doc__" style="font-size: 12pt;"><b>DE:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                         <br><br>
@@ -66,14 +66,29 @@
                     </div>
                     <div style="text-align: left;">
 
-                        <p class="doc__" style="font-size: 12pt;">{{ detalle.desde.nombre }} {{ detalle.desde.apellidos }}<br>{{ detalle.desde.cargo }}</p>
-                        <br>
+                        <p class="doc__" style="font-size: 12pt; margin-right: 5%">{{ detalle.desde.nombre }} {{ detalle.desde.apellidos }}<br>{{ detalle.desde.cargo }}</p>
+
                         <p class="doc__" style="font-size: 12pt;">{{ detalle.para.nombre }} {{ detalle.para.apellidos }}<br>{{ detalle.para.cargo }}</p>
-                    </div>
-                    <br>
-                    <div class="primeralinea" style="text-align: justify; font-size: 12pt; height: 350px; width: 610px; margin-left: 8%; margin-right: 8%">
-                        <p style="margin-right: 8%; white-space: pre-wrap"> {{ detalle.cuerpo|linebreaksbr }}</p>
-                    </div>
+                    </div> -->
+                    <table style="margin-left: 15%">
+                        <tr style="font-size: 12pt; vertical-align: top">
+                          <td width="150" height="120"  ><b>DE:</b></td>
+                          <td width="300">{{ detalle.desde.nombre }} {{ detalle.desde.apellidos }}<br>{{ detalle.desde.cargo }}</td>
+                        </tr>
+                        <tr style="font-size: 12pt; vertical-align: top">
+                            <td width="150" height="120" "><b>PARA:</b></td>
+                          <td width="100px">{{ detalle.para.nombre }} {{ detalle.para.apellidos }}<br>{{ detalle.para.cargo }}</td>
+                        </tr>
+                    </table>
+                    {% if detalle.tipo.titulo == "Memorando" %}
+                        <div class="primeralinea" style="text-align: justify; font-size: 12pt; height: 200px; width: 610px; margin-left: 8%; margin-right: 8%">
+                            <p style="margin-right: 8%; white-space: pre-wrap"> {{ detalle.cuerpo|linebreaksbr }}</p>
+                        </div>
+                    {% else %}
+                        <div class="primeralinea" style="text-align: justify; font-size: 12pt; height: 350px; width: 610px; margin-left: 8%; margin-right: 8%">
+                            <p style="margin-right: 8%; white-space: pre-wrap"> {{ detalle.cuerpo|linebreaksbr }}</p>
+                        </div>
+                    {% endif %}
                     <div style="font-size: 12pt; margin-left: 8%; float: left"><br><br><br><br>
                        {{ detalle.piepag|linebreaksbr }}
                     </div>

@@ -12,7 +12,7 @@ class Desde(models.Model):
 	activo = models.BooleanField(default=True)
 	firma = models.TextField()
 	def __str__(self):
-		return '{}'.format(self.nombre+" "+self.apellidos+" - "+self.cargo) 
+		return '{}'.format(self.nombre+" "+self.apellidos)
 
 class Para(models.Model):
 	nombre = models.CharField(max_length=50)
@@ -20,7 +20,7 @@ class Para(models.Model):
 	cargo = models.CharField(max_length=100)
 	activo = models.BooleanField(default=True)
 	def __str__(self):
-		return '{}'.format(self.nombre+" "+self.apellidos+" - "+self.cargo)
+		return '{}'.format(self.nombre+" "+self.apellidos)
 
 class Tipo_docum(models.Model):
 	titulo = models.CharField(max_length=50)
