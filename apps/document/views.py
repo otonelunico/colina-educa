@@ -112,7 +112,7 @@ def Create_value(request, value):
         data = {'titulo': 'Remitente',
                 'tema': 'remitente',
                 'value': value}
-        model = Desde.objects.filter(activo=True).order_by('nombre')
+        model = Desde.objects.all().order_by('nombre')
         form= DesdeForm()
         if request.method == 'POST':
             form = DesdeForm(request.POST)
@@ -123,7 +123,7 @@ def Create_value(request, value):
         data={'titulo' :'Destinatario',
               'tema' : 'destinatario',
                 'value': value}
-        model = Para.objects.filter(activo=True).order_by('nombre')
+        model = Para.objects.all().order_by('nombre')
         form= ParaForm()
         if request.method == 'POST':
             form = ParaForm(request.POST)
@@ -132,6 +132,36 @@ def Create_value(request, value):
             return redirect('document:create_value', value)
 
     return render(request, 'document/create_value.html', {'form' :form, 'model': model, 'data': data})
+
+
+def Edit_value(request, value, id_value):
+    if value == 'desde':
+        data = {'titulo': 'Remitente',
+                'tema': 'remitente',
+                'value': value}
+        model = Desde.objects.all().order_by('nombre')
+        modelform = Desde.objects.get(id = id_value)
+        if request.method == 'GET':
+            form = DesdeForm(instance=modelform)
+        else:
+            form = DesdeForm(request.POST, instance=modelform)
+            if form.is_valid():
+                form.save()
+            return redirect('document:create_value', value)
+
+    elif value == 'para':
+        data={'titulo' :'Destinatario',
+              'tema' : 'destinatario',
+                'value': value}
+        model = Para.objects.filter(activo=True).order_by('nombre')
+        form= ParaForm()
+        if request.method == 'POST':
+            form = ParaForm(request.POST, instance=model)
+            if form.is_valid():
+                form.save()
+            return redirect('document:create_value', value)
+
+    return render(request, 'document/create_value.html', {'form' :form, 'model': model, 'data': data, 'modelform': modelform})
 
 def Active_off(request, value, id_value):
     if value == 'desde':

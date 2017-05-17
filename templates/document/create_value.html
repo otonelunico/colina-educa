@@ -15,20 +15,20 @@
                          {% csrf_token %}
 
                         <div class="col-lg-3">
-                            <input type="text" class="form-control" name="nombre" placeholder="Nombre" ><br>
+                            {{ form.nombre|safe }} <br>
                         </div>
                         <div class="col-lg-3">
-                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" ><br>
+                            {{ form.apellidos|safe }} <br>
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" name="cargo" placeholder="Cargo" ><br>
+                            {{ form.cargo|safe }} <br>
                         </div>
 
                 </div>
                 <div class="row">
                     <div class="col-lg-9">
                         {% if data.value == 'desde' %}
-                         <textarea class="form-control" name="firma" placeholder="Firma" cols="33" rows="2"></textarea>
+                         <textarea class="form-control" name="firma" placeholder="Firma" cols="33" rows="2" >{{ modelform.firma|safe }}</textarea>
                             <br>
                         {% endif %}
                     </div>
@@ -71,7 +71,7 @@
 						<td>{{ models.nombre }}</td>
 						<td>{{ models.apellidos }}</td>
 						<td>{{ models.cargo }}</td>
-						<td><a class="btn btn-link disabled" style="color: darkred" href="{% url 'document:active_off' data.value models.id %}"> Eliminar</a></td>
+						<td><a class="btn btn-link" style="color: darkblue" href="{% url 'document:edit_value' data.value models.id %}"> Editar</a></td>
 					</tr>
 					{% endfor %}
 				</tbody>
