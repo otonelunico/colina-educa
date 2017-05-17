@@ -37,7 +37,7 @@ class Documento(models.Model):
 	piepag = models.TextField(null=False)
 	creacion = models.TextField()
 	ano =  models.TextField()
-	usuario = models.ForeignKey(User, null=False, blank=True, on_delete=models.CASCADE)
+	usuario =  models.TextField()
 	activo = models.BooleanField(default=True)
 
 

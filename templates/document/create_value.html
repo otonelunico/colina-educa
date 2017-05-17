@@ -71,7 +71,7 @@
 						<td>{{ models.nombre }}</td>
 						<td>{{ models.apellidos }}</td>
 						<td>{{ models.cargo }}</td>
-						<td><a class="" style="color: darkred" href="{% url 'document:active_off' data.value models.id %}"> Eliminar</a></td>
+						<td><a class="btn btn-link disabled" style="color: darkred" href="{% url 'document:active_off' data.value models.id %}"> Eliminar</a></td>
 					</tr>
 					{% endfor %}
 				</tbody>

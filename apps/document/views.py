@@ -90,6 +90,8 @@ def Document_create(request):
         return redirect('document:documento_detalle', obj.id)
     else:
         form = DocumentoForm()
+        desde = Desde.objects.filter(activo=True)
+        print(desde)
     print(doc_ant)
     if val:
         data = {
@@ -102,6 +104,8 @@ def Document_create(request):
             'num': doc_ant['num']  # cambiar por el siguiente numeromde la base de datos
         }
     return render(request, 'document/documento_form.html', dict(form=form, fecha=fecha, data=data))
+
+
 
 def Create_value(request, value):
     if value == 'desde':
