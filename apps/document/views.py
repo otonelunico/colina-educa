@@ -153,10 +153,12 @@ def Edit_value(request, value, id_value):
         data={'titulo' :'Destinatario',
               'tema' : 'destinatario',
                 'value': value}
-        model = Para.objects.filter(activo=True).order_by('nombre')
-        form= ParaForm()
-        if request.method == 'POST':
-            form = ParaForm(request.POST, instance=model)
+        model = Para.objects.all().order_by('nombre')
+        modelform = Para.objects.get(id=id_value)
+        if request.method == 'GET':
+            form = DesdeForm(instance=modelform)
+        else:
+            form = ParaForm(request.POST, instance=modelform)
             if form.is_valid():
                 form.save()
             return redirect('document:create_value', value)
