@@ -39,7 +39,7 @@
                     <div class="col-lg-12">
                          <h4>Contenido.</h4>
                        
-                         <textarea class="form-control" name="cuerpo" cols="33" rows="10">{{ data.cuerpo|safe }}</textarea>
+                         <textarea onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" class="form-control" name="cuerpo" cols="33" rows="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.cuerpo|safe }}</textarea>
                         <br>
                     </div>
 
