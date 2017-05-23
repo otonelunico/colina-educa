@@ -53,7 +53,6 @@ def Fecha_actual():
     }
     return fecha
 
-
 def Document_create(request):
     try:
         doc_ant = Documento.objects.latest('id')
@@ -105,8 +104,6 @@ def Document_create(request):
         }
     return render(request, 'document/documento_form.html', dict(form=form, fecha=fecha, data=data))
 
-
-
 def Create_value(request, value):
     if value == 'desde':
         data = {'titulo': 'Remitente',
@@ -132,7 +129,6 @@ def Create_value(request, value):
             return redirect('document:create_value', value)
 
     return render(request, 'document/create_value.html', {'form' :form, 'model': model, 'data': data})
-
 
 def Edit_value(request, value, id_value):
     if value == 'desde':
@@ -181,7 +177,6 @@ def Active_off(request, value, id_value):
         value_.activo = False
         value_.save()
         return redirect('document:documento_list')
-
 
 def Documento_edit(request, id_documento):
     model = Documento.objects.get(id=id_documento)
