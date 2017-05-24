@@ -21,25 +21,43 @@
                 <div class="row">
                     <div class="col-md-6">
                     <h4>Remitente</h4>
-                    {% render_field form.desde %}
+                        <select class="form-control" name="desde">
+
+                            {% for foo in data.desde %}
+                                <option value="{{ foo.id }}">{{ foo }}</option>
+                            {% endfor %}
+
+                        </select>
                     <p align="right"><a href="{% url 'document:create_value' 'desde' %}">Mantenedor de remitentes</a></p>
                         <h4>Materia:</h4>
                     {% render_field form.mat %}
                     </div>
                     <div class="col-md-6 ">
                     <h4>Destinatario</h4>
-                    {% render_field form.para %}
+                        <select class="form-control" name="para">
+
+                            {% for foo in data.para %}
+                                <option value="{{ foo.id }}">{{ foo }}</option>
+                            {% endfor %}
+
+                        </select>
                     <p align="right"><a href="{% url 'document:create_value' 'para' %}">Mantenedor de destinatarios</a></p>
                     <h4>Tipo de documento</h4>
-                    {% render_field form.tipo %}
+                        <select class="form-control"  name="tipo">
+
+                            {% for foo in data.tipo %}
+                                <option value="{{ foo.id }}">{{ foo }}</option>
+                            {% endfor %}
+
+                        </select>
                         <br>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
                          <h4>Contenido.</h4>
-                       
-                         <textarea onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" class="form-control" name="cuerpo" cols="33" rows="10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ data.cuerpo|safe }}</textarea>
+
+                         <textarea id="cuerpo" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" class="form-control" name="cuerpo" cols="33" rows="10" required>{{ data.cuerpo|safe }}</textarea>
                         <br>
                     </div>
 
@@ -63,4 +81,11 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+valor = document.getElementById("cuerpo").value;
+if( valor == null || valor.length == 0 || /^\s+$/.test(valor) ) {
+  return false;
+}
+
+</script>
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from apps.document.models import Documento, Para, Desde
+from apps.document.models import Documento, Para, Desde, Tipo_docum
 from apps.document.forms import DocumentoForm, DesdeForm, ParaForm
 import datetime, time
 
@@ -73,7 +73,6 @@ def Document_create(request):
             tipo_ant = Documento.objects.filter(tipo=obj.tipo)
             num=0
             for doc in tipo_ant:
-                print (str(doc.tipo) +" "+ str(doc.num))
                 num=doc.num
             if val and doc_ant.ano == str(fecha['ano']):
                 obj.num = num + 1
@@ -89,19 +88,24 @@ def Document_create(request):
         return redirect('document:documento_detalle', obj.id)
     else:
         form = DocumentoForm()
-        desde = Desde.objects.filter(activo=True)
-        print(desde)
+
+
     print(doc_ant)
     if val:
         data = {
             'pie_anterior': doc_ant.piepag,
-            'num': doc_ant.num  # cambiar por el siguiente numeromde la base de datos
+            'num': doc_ant.num,  # cambiar por el siguiente numeromde la base de datos
         }
     else:
         data = {
-            'pie_anterior': 'Texto',
+            'pie_anterior': '',
             'num': doc_ant['num']  # cambiar por el siguiente numeromde la base de datos
         }
+
+    data['desde'] = Desde.objects.filter(activo=True).order_by('id')
+    data['para'] = Para.objects.filter(activo=True).order_by('id')
+    data['tipo'] = Tipo_docum.objects.all().order_by('id')
+
     return render(request, 'document/documento_form.html', dict(form=form, fecha=fecha, data=data))
 
 def Create_value(request, value):

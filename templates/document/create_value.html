@@ -65,14 +65,31 @@
 
 
 				{% for models in model %}
+                        {% if models.activo == True %}
+                            <tr class="odd gradeX" >
 
-					<tr class="odd gradeX" >
+                                <td>{{ models.nombre }}</td>
+                                <td>{{ models.apellidos }}</td>
+                                <td>{{ models.cargo }}</td>
+                                <td>
+                                    <div class="row" align="center">
+                                    <div class="btn-group">
+                                                <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    Acciones
+                                                    <span class="caret"></span>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right" role="menu">
+                                                    <li><a class="btn" href="{% url 'document:edit_value' data.value models.id %}" style="color: darkblue" >Editar</a>
+                                                    </li>
+                                                    <li><a class="btn" href="{% url 'document:active_off' data.value models.id %}" style="color: darkred" >Eliminar</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
 
-						<td>{{ models.nombre }}</td>
-						<td>{{ models.apellidos }}</td>
-						<td>{{ models.cargo }}</td>
-						<td><a class="btn btn-link" style="color: darkblue" href="{% url 'document:edit_value' data.value models.id %}"> Editar</a></td>
-					</tr>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endif  %}
 					{% endfor %}
 				</tbody>
 			</table>
