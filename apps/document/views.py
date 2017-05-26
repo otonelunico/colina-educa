@@ -193,7 +193,11 @@ def Documento_edit(request, id_documento):
         if form.is_valid():
             form.save()
         return redirect('document:documento_list')
-    return render(request, 'document/documento_form.html', {'form': form,'data': data})
+    fecha = Fecha_actual()
+    data['desde'] = Desde.objects.filter(activo=True).order_by('id')
+    data['para'] = Para.objects.filter(activo=True).order_by('id')
+    data['tipo'] = Tipo_docum.objects.all().order_by('id')
+    return render(request, 'document/documento_form.html', {'form': form,'data': data, 'fecha': fecha})
 
 def Documento_list(request):
     model = Documento.objects.all().order_by('id')
