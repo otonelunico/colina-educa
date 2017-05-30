@@ -72,7 +72,8 @@
                         </div>
                     </div>
                     <br style="font-size: 5pt">
-                <p style="font-size: 14pt; text-align: left; margin-left: 15px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Colina, {{ detalle.creacion }}</p>
+
+                <p style="font-size: 14pt; text-align: left; margin-left: 8%">Colina, {{ detalle.creacion }}</p>
                     <div align="center">
                         <p style="font-size: 18pt"> <b><u>{{ detalle.tipo }}</u></b></p>
                     </div>
@@ -88,11 +89,11 @@
                         </tr>
                     </table>
                     {% if detalle.tipo.titulo == "Memorando" %}
-                        <div class="primeralinea" style="text-align: justify; font-size: 14pt; min-height: 200px; width: 610px; margin-left: 8%; margin-right: 8%">
+                        <div class="primeralinea" style="text-align: justify; font-size: 14pt; min-height: 200px; width: 610px; margin-left: 8%; margin-top:10px; margin-right: 8%">
                             <p style="margin-right: 8%; white-space: pre-wrap"> {{ detalle.cuerpo|linebreaksbr }}</p>
                         </div>
                     {% else %}
-                        <div class="primeralinea" style="text-align: justify; font-size: 14pt; min-height: 320px; width: 610px; margin-left: 8%; margin-right: 8%">
+                        <div class="primeralinea" style="text-align: justify; font-size: 14pt; min-height: 320px; width: 610px; margin-left: 8%; margin-top:10px; margin-right: 8%">
                             <p style="margin-right: 8%; white-space: pre-wrap"> {{ detalle.cuerpo|linebreaksbr }}</p>
                         </div>
                     {% endif %}
