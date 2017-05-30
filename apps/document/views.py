@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from apps.document.models import Documento, Para, Desde, Tipo_docum
+from apps.document.models import Documento, Para, Desde, Tipo_docum, Alertmessage
 from apps.document.forms import DocumentoForm, DesdeForm, ParaForm
 import datetime, time
 
@@ -65,6 +65,16 @@ def Document_create(request):
         val = False
     fecha = Fecha_actual()
     fecha_str = fecha['ndia']+", "+str(fecha['dia']) + " de " + fecha['mes'] + " del " + str(fecha['ano'])
+    if val:
+        data = {
+            'pie_anterior': doc_ant.piepag,
+            'num': doc_ant.num,  # cambiar por el siguiente numeromde la base de datos
+        }
+    else:
+        data = {
+            'pie_anterior': '',
+            'num': doc_ant['num']  # cambiar por el siguiente numeromde la base de datos
+        }
     if request.method == 'POST':
         form = DocumentoForm(request.POST)
         if form.is_valid():
@@ -80,7 +90,31 @@ def Document_create(request):
                 obj.num = 1
             obj.creacion = fecha_str
             obj.ano = fecha['ano']
-            form.save()
+            valdos = 0
+            if obj.desde != doc_ant.desde:
+                valdos = valdos + 1
+            if obj.para != doc_ant.para:
+                valdos = valdos + 1
+            if obj.cuerpo != doc_ant.cuerpo:
+                valdos = valdos + 1
+            if obj.mat != doc_ant.mat:
+                valdos = valdos + 1
+
+
+            if valdos < 2:
+                Documento.objects.filter(id=doc_ant.id).update(num = doc_ant.num,
+                                                               mat = obj.mat,
+                                                               desde = obj.desde,
+                                                               para = obj.para,
+                                                               cuerpo = obj.cuerpo,
+                                                               piepag = obj.piepag)
+
+
+                obj.id = doc_ant.id
+
+                setMessage('estandar', 'Se a modificado el documento.', obj.id)
+            else:
+                form.save()
         else:
             print(form.is_valid())
             print(form.errors)
@@ -90,17 +124,6 @@ def Document_create(request):
         form = DocumentoForm()
 
 
-    print(doc_ant)
-    if val:
-        data = {
-            'pie_anterior': doc_ant.piepag,
-            'num': doc_ant.num,  # cambiar por el siguiente numeromde la base de datos
-        }
-    else:
-        data = {
-            'pie_anterior': '',
-            'num': doc_ant['num']  # cambiar por el siguiente numeromde la base de datos
-        }
 
     data['desde'] = Desde.objects.filter(activo=True).order_by('id')
     data['para'] = Para.objects.filter(activo=True).order_by('id')
@@ -191,8 +214,12 @@ def Documento_edit(request, id_documento):
     else:
         form = DocumentoForm(request.POST, instance=model)
         if form.is_valid():
+            obj = form.save(commit=False)
             form.save()
-        return redirect('document:documento_list')
+            _obj=Documento.objects.get(num = obj.num, tipo = obj.tipo)
+
+            setMessage('estandar', 'Se a modificado el documento.', _obj.id)
+        return redirect('document:documento_detalle', _obj.id)
     fecha = Fecha_actual()
     data['desde'] = Desde.objects.filter(activo=True).order_by('id')
     data['para'] = Para.objects.filter(activo=True).order_by('id')
@@ -204,10 +231,25 @@ def Documento_list(request):
     return render(request, 'document/documento_list.html', {'model': model})
 
 def Detalle_doc(request, id_docum):
+    model = Documento.objects.get(id=id_docum)
+    msj = getMessage('estandar')
+    mensaje = 'null'
+    if msj.message !="null" and msj.dueno == model.id:
+        mensaje = getMessage('estandar').message
+        setMessage('estandar','null',model.id )
+
     data = {
-        'detalle': Documento.objects.get(id=id_docum)
+        'detalle': model,
+        'alert': mensaje
     }
-    print(data)
 
     return render(request, "document/detalle_documento.html", data)
 
+def getMessage(tipo):
+      return Alertmessage.objects.get(tipo=tipo)
+
+def setMessage(tipo, msj, id):
+      obj = Alertmessage.objects.get(tipo=tipo)
+      obj.message = msj
+      obj.dueno = id
+      obj.save()

@@ -40,4 +40,9 @@ class Documento(models.Model):
 	usuario =  models.TextField()
 	activo = models.BooleanField(default=True)
 
-
+class Alertmessage(models.Model):
+	tipo = models.CharField(max_length=50, null=True)
+	message = models.CharField(max_length=50, null=True)
+	dueno = models.IntegerField(null=True)
+	def __str__(self):
+		return '{}'.format(self.message)

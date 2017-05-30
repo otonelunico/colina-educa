@@ -166,3 +166,5 @@ EMAIL_HOST_USER = 'ocubillosj@gmail.com'
 EMAIL_HOST_PASSWORD = 'elunico1'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
+
+ALERT_PER = {}
