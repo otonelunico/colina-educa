@@ -4,12 +4,6 @@ from django.contrib.auth.models import User
 from apps.usuarios.models import Tecnico
 # Create your models here.
 
-"""
-python3 manage.py makemigrations
-python3 manage.py migrate
-
-"""
-
 class Estado(models.Model):
 	titulo = models.CharField(max_length=50)
 	def __str__(self):
@@ -43,3 +37,11 @@ class Ticket(models.Model):
 	estado =  models.ForeignKey(Estado, null=False, blank=True, on_delete=models.CASCADE)
 	def __str__(self):
 		return '{}'.format(self.resum_problema)
+
+class Respuestas(models.Model):
+	usuario = models.TextField(null=False)
+	asunto = models.CharField(max_length=50, null=False)
+	mensaje = models.TextField(null=False)
+	updated_at = models.DateTimeField(auto_now=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	ticket = models.IntegerField()

@@ -1,6 +1,6 @@
 from django import forms
 
-from apps.ticket.models import Ticket, Establecimiento, Tema
+from apps.ticket.models import Ticket, Establecimiento, Tema, Respuestas
 
 class TicketForm(forms.ModelForm):
 
@@ -78,3 +78,26 @@ class TemaForm(forms.ModelForm):
 
 		}
 
+class RespuestaForm(forms.ModelForm):
+
+	class Meta:
+		model = Respuestas
+		fields = [
+			'usuario',
+            'asunto' ,
+            'mensaje' ,
+            'ticket',
+		]
+		labels = {
+			'usuario': 'Usuario',
+            'asunto': 'Asunto',
+            'mensaje': 'Mensaje',
+            'ticket': 'Ticket'
+		}
+		widgets = {
+            'usuario': forms.TextInput(attrs={'class':'form-control'}),
+            'asunto': forms.TextInput(attrs={'class':'form-control'}),
+            'mensaje': forms.Textarea(attrs={'class':'form-control'}),
+            'ticket': forms.TextInput(attrs={'class':'form-control'}),
+
+		}

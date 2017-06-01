@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from django.contrib.auth.models import User
-from apps.ticket.forms import TicketForm,EstablecimientoForm, TemaForm
-from apps.ticket.models import Ticket, Establecimiento, Tema, Estado
+from apps.ticket.forms import TicketForm,EstablecimientoForm, TemaForm, RespuestaForm
+from apps.ticket.models import Ticket, Establecimiento, Tema, Estado, Respuestas
 
 
 # Create your views here.
@@ -99,11 +99,10 @@ def EstadosView(request):
 
 def ticket_detalle(request, id_ticket):
     data ={
-        'detalle': Ticket.objects.get(id=id_ticket)
-
+        'detalle': Ticket.objects.get(id=id_ticket),
+        'resp': GetRespuestas(id_ticket)
         }
-    print (data)
-
+    SetRespuestas(1,'test2','Mensaje test 2',request.user)
     return render(request,"ticket/ticket_detalle.html", data)
 
 def Cambiar_estado(request, id_ticket, id_estado):
@@ -114,3 +113,10 @@ def Cambiar_estado(request, id_ticket, id_estado):
     print(estado)
     ticket.save()
     return redirect('ticket:ticket_list')
+
+def GetRespuestas(id_ticket):
+    resp = Respuestas.objects.filter(id=id_ticket).order_by('id')
+    return resp
+
+def SetRespuestas(id_ticket, asunto, mensaje, user):
+        Respuestas.objects.create(usuario=user, asunto = asunto, mensaje = mensaje, ticket = id_ticket)
