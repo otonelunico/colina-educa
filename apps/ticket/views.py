@@ -98,11 +98,26 @@ def EstadosView(request):
     return render(request,"ticket/ticket_reportes.html", data)
 
 def ticket_detalle(request, id_ticket):
-    data ={
-        'detalle': Ticket.objects.get(id=id_ticket),
-        'resp': GetRespuestas(id_ticket)
-        }
-    SetRespuestas(1,'test2','Mensaje test 2',request.user)
+
+    form = RespuestaForm()
+    data = {
+        'detalle': Ticket.objects.filter(id=id_ticket),
+        'resp': GetRespuestas(id_ticket),
+        'form': form
+    }
+    ultimo = Respuestas.objects.latest('id')
+    if request.method == 'POST':
+        form = RespuestaForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.usuario = request.user.first_name+' '+request.user.last_name
+            obj.ticket = id_ticket
+            print(request.user.first_name)
+            if obj.asunto != ultimo.asunto or obj.mensaje != ultimo.mensaje :
+                form.save()
+        else:
+            print(form.is_valid())
+            print(form.errors)
     return render(request,"ticket/ticket_detalle.html", data)
 
 def Cambiar_estado(request, id_ticket, id_estado):
@@ -115,7 +130,7 @@ def Cambiar_estado(request, id_ticket, id_estado):
     return redirect('ticket:ticket_list')
 
 def GetRespuestas(id_ticket):
-    resp = Respuestas.objects.filter(id=id_ticket).order_by('id')
+    resp = Respuestas.objects.filter(ticket=id_ticket).order_by('id')
     return resp
 
 def SetRespuestas(id_ticket, asunto, mensaje, user):

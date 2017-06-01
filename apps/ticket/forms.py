@@ -83,21 +83,14 @@ class RespuestaForm(forms.ModelForm):
 	class Meta:
 		model = Respuestas
 		fields = [
-			'usuario',
             'asunto' ,
             'mensaje' ,
-            'ticket',
 		]
 		labels = {
-			'usuario': 'Usuario',
             'asunto': 'Asunto',
             'mensaje': 'Mensaje',
-            'ticket': 'Ticket'
 		}
 		widgets = {
-            'usuario': forms.TextInput(attrs={'class':'form-control'}),
             'asunto': forms.TextInput(attrs={'class':'form-control'}),
             'mensaje': forms.Textarea(attrs={'class':'form-control'}),
-            'ticket': forms.TextInput(attrs={'class':'form-control'}),
-
 		}

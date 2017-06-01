@@ -81,17 +81,18 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ foo.id }}" aria-expanded="false" class="collapsed">
                                                 <div class="row">
-                                                    <div class="col-lg-6">Titulo: {{ foo.asunto }}</div>
-                                                    <div class="col-lg-6">Remitente: {{ foo.usuario }}</div>
+                                                    <div class="col-lg-6">Asunto: {{ foo.asunto }}</div>
+                                                    <div class="col-lg-4">Remitente: {{ foo.usuario }}</div>
+                                                    <div class="col-lg-2" style="font-style: oblique; text-align: right; font-size: x-small">{{ foo.updated_at }}</div>
                                                 </div>
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                    <div id="collapse{{ foo.id }}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                         <div class="panel-body">
-                                        <p>{{ foo.mensaje }}</p>
+                                            <p>{{ foo.mensaje }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -101,11 +102,19 @@
 
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <input class="form-control" type="text">
+            <form method="post">
+                    {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Asunto</p>
+                        {{ form.asunto }}
+                        <br>
+                        <p>Mensaje</p>
+                        {{ form.mensaje }}
+                        <button class="btn btn-primary" type='submit'>Guardar</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

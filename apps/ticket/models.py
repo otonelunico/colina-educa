@@ -39,9 +39,9 @@ class Ticket(models.Model):
 		return '{}'.format(self.resum_problema)
 
 class Respuestas(models.Model):
-	usuario = models.TextField(null=False)
+	usuario = models.TextField()
 	asunto = models.CharField(max_length=50, null=False)
 	mensaje = models.TextField(null=False)
 	updated_at = models.DateTimeField(auto_now=True)
 	created_at = models.DateTimeField(auto_now_add=True)
-	ticket = models.IntegerField()
+	ticket = models.IntegerField(null=True)

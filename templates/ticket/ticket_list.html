@@ -32,7 +32,7 @@
 					<tr class="odd gradeX">
 
 						<td> <a href="{% url 'ticket:ticket_detalle' ticket.id %}">{{ ticket.id }} </a></td>
-						<td>{{ ticket.resum_problema }}</td>
+						<td><a href="{% url 'ticket:ticket_detalle' ticket.id %}">{{ ticket.resum_problema }} </a></td>
 						<td>{{ ticket.tema.titulo }}</td>
 						<td>{{ ticket.establecimiento.titulo }}</td>
 						<td>{{ ticket.nom_contacto }} {{ ticket.ape_contacto }}</td>
