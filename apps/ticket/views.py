@@ -101,7 +101,7 @@ def ticket_detalle(request, id_ticket):
 
     form = RespuestaForm()
     data = {
-        'detalle': Ticket.objects.filter(id=id_ticket),
+        'detalle': Ticket.objects.get(id=id_ticket),
         'resp': GetRespuestas(id_ticket),
         'form': form
     }
