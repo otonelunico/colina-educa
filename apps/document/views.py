@@ -125,6 +125,7 @@ def Document_create(request):
 
 
 
+    data['ant'] = Documento.objects.all().order_by('-id')[:20]
     data['desde'] = Desde.objects.filter(activo=True).order_by('id')
     data['para'] = Para.objects.filter(activo=True).order_by('id')
     data['tipo'] = Tipo_docum.objects.all().order_by('id')
@@ -215,8 +216,8 @@ def Documento_edit(request, id_documento):
         form = DocumentoForm(request.POST, instance=model)
         if form.is_valid():
             obj = form.save(commit=False)
-            form.save()
             _obj=Documento.objects.get(num = obj.num, tipo = obj.tipo)
+            form.save()
 
             setMessage('estandar', 'Se a modificado el documento.', _obj.id)
         return redirect('document:documento_detalle', _obj.id)

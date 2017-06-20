@@ -30,6 +30,7 @@ class Tipo_docum(models.Model):
 class Documento(models.Model):
 	tipo= models.ForeignKey(Tipo_docum, null=False, blank=True, on_delete=models.CASCADE)
 	num = models.IntegerField(null=False)
+	ant = models.CharField(max_length=50, null=True)
 	mat = models.CharField(max_length=50, null=False)
 	desde = models.ForeignKey(Desde, null=False, blank=True, on_delete=models.CASCADE)
 	para = models.ForeignKey(Para, null=False, blank=True, on_delete=models.CASCADE)
