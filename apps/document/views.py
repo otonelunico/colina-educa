@@ -229,7 +229,7 @@ def Documento_edit(request, id_documento):
     return render(request, 'document/documento_form.html', {'form': form,'data': data, 'fecha': fecha})
 
 def Documento_list(request):
-    model = Documento.objects.all().order_by('id')
+    model = Documento.objects.all().order_by('-id')
     return render(request, 'document/documento_list.html', {'model': model})
 
 def Detalle_doc(request, id_docum):
