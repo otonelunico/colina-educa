@@ -220,8 +220,9 @@ def Documento_edit(request, id_documento):
             form.save()
 
             setMessage('estandar', 'Se a modificado el documento.', _obj.id)
-        return redirect('document:documento_detalle', _obj.id)
+            return redirect('document:documento_detalle', _obj.id)
     fecha = Fecha_actual()
+    data['ant'] = Documento.objects.all().order_by('-id')[:20]
     data['desde'] = Desde.objects.filter(activo=True).order_by('id')
     data['para'] = Para.objects.filter(activo=True).order_by('id')
     data['tipo'] = Tipo_docum.objects.all().order_by('id')
