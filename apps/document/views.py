@@ -81,11 +81,9 @@ def Document_create(request):
             obj = form.save(commit=False)
             obj.usuario = request.user
             tipo_ant = Documento.objects.filter(tipo=obj.tipo)
-            num=0
-            for doc in tipo_ant:
-                num=doc.num
+            doc_ant=tipo_ant.last()
             if val and doc_ant.ano == str(fecha['ano']):
-                obj.num = num + 1
+                obj.num = int(doc_ant.num) + 1
             else:
                 obj.num = 1
             obj.creacion = fecha_str
@@ -115,11 +113,12 @@ def Document_create(request):
                 setMessage('estandar', 'Se a modificado el documento.', obj.id)
             else:
                 form.save()
+            return redirect('document:documento_detalle', obj.id)
         else:
             print(form.is_valid())
             print(form.errors)
             form = DocumentoForm(request.POST)
-        return redirect('document:documento_detalle', obj.id)
+
     else:
         form = DocumentoForm()
 
