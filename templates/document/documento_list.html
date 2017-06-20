@@ -27,7 +27,7 @@
 				{% for documentos in model %}
                     {% if documentos.activo %}
 					<tr class="odd gradeX" >
-						<td >{{ documentos.ano }}/{{ documentos.num }}</td>
+						<td >{{ documentos.num }}/{{ documentos.ano }}</td>
 						<td> <a href="{% url 'document:documento_detalle' documentos.id %}"> <B>{{ documentos.mat }}</B></a></td>
 						<td>{{ documentos.creacion }}</td>
 						<td>{{ documentos.tipo }}</td>
