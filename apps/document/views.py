@@ -110,7 +110,7 @@ def Document_create(request):
 
                 obj.id = doc_ant.id
 
-                setMessage('estandar', 'Se aaa modificado el documento.', obj.id)
+                setMessage('estandar', 'Se ha modificado el documento.', obj.id)
             else:
                 form.save()
             return redirect('document:documento_detalle', obj.id)
@@ -218,7 +218,7 @@ def Documento_edit(request, id_documento):
             _obj=Documento.objects.get(num = obj.num, tipo = obj.tipo)
             form.save()
 
-            setMessage('estandar', 'Se a modificado el documento.', _obj.id)
+            setMessage('estandar', 'Se ha modificado el documento.', _obj.id)
             return redirect('document:documento_detalle', _obj.id)
     fecha = Fecha_actual()
     data['ant'] = Documento.objects.all().order_by('-id')[:20]
