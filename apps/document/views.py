@@ -110,7 +110,7 @@ def Document_create(request):
 
                 obj.id = doc_ant.id
 
-                setMessage('estandar', 'Se ha modificado el documento.', obj.id)
+                setMessage('estandar', 'Se ha modificado el documento. ', obj.id)
             else:
                 form.save()
             return redirect('document:documento_detalle', obj.id)
